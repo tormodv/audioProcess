@@ -119,8 +119,8 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
          rdfs:subClassOf :ProcessEvent .
 
 
-###  http://www.aes.org/ontologies/X098#FIlter
-:FIlter rdf:type owl:Class ;
+###  http://www.aes.org/ontologies/X098#Filter
+:Filter rdf:type owl:Class ;
         rdfs:subClassOf :ProcessEvent .
 
 
