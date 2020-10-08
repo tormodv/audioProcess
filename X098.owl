@@ -22,61 +22,92 @@
 ###  http://www.aes.org/ontologies/X098#assuredBy
 :assuredBy rdf:type owl:ObjectProperty ;
            rdfs:domain :ProcessEvent ;
-           rdfs:range :QualityAssurance .
+           rdfs:range :QualityAssurance ;
+           rdfs:label "assured by"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#feedsSideChainInput
 :feedsSideChainInput rdf:type owl:ObjectProperty ;
                      rdfs:domain :ProcessEvent ;
-                     rdfs:range :ProcessEvent .
+                     rdfs:range :ProcessEvent ;
+                     rdfs:label "feeds side chain input"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDeviceParameter
 :hasDeviceParameter rdf:type owl:ObjectProperty ;
                     rdfs:domain :DeviceChannel ;
-                    rdfs:range :DeviceParameter .
+                    rdfs:range :DeviceParameter ;
+                    rdfs:label "device parameter"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDownstreamOutput
 :hasDownstreamOutput rdf:type owl:ObjectProperty ;
                      rdfs:domain :ProcessEvent ;
-                     rdfs:range :ProcessEvent .
+                     rdfs:range :ProcessEvent ;
+                     rdfs:label "downstream output"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDownstreamOutputChannel
 :hasDownstreamOutputChannel rdf:type owl:ObjectProperty ;
                             rdfs:domain :DeviceChannel ;
-                            rdfs:range :DeviceChannel .
+                            rdfs:range :DeviceChannel ;
+                            rdfs:label "downstream output channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasInputChannel
 :hasInputChannel rdf:type owl:ObjectProperty ;
                  rdfs:domain :Device ;
-                 rdfs:range :DeviceChannel .
+                 rdfs:range :DeviceChannel ;
+                 rdfs:label "input channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasOutputChanel
 :hasOutputChanel rdf:type owl:ObjectProperty ;
                  rdfs:domain :Device ;
-                 rdfs:range :DeviceChannel .
+                 rdfs:range :DeviceChannel ;
+                 rdfs:label "output channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasProcessEventGrupMember
 :hasProcessEventGrupMember rdf:type owl:ObjectProperty ;
                            rdfs:domain :ProcessEvent ;
-                           rdfs:range :ProcessEvent .
+                           rdfs:range :ProcessEvent ;
+                           rdfs:label "prosess event group member"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasTimelineFractionProsessEvent
 :hasTimelineFractionProsessEvent rdf:type owl:ObjectProperty ;
                                  rdfs:domain :ProcessEvent ;
-                                 rdfs:range :ProcessEvent .
+                                 rdfs:range :ProcessEvent ;
+                                 rdfs:label "timeline fraction prosess event"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#sendsToBus
 :sendsToBus rdf:type owl:ObjectProperty ;
             rdfs:domain :DeviceParameter ;
-            rdfs:range :DeviceChannel .
+            rdfs:range :DeviceChannel ;
+            rdfs:label "sends to bus"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasAssociatedProductionJob
+ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty ;
+                                rdfs:domain ec:EditorialObject ;
+                                rdfs:range ccdm:ProductionJob ;
+                                rdfs:comment "Production job"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasInputMediaResource
+ccdm:hasInputMediaResource rdf:type owl:ObjectProperty ;
+                           rdfs:domain ccdm:ProductionJob ;
+                           rdfs:range ec:MediaResource ;
+                           rdfs:label "input media resource"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasOutputMediaResource
+ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty ;
+                            rdfs:domain ccdm:ProductionJob ;
+                            rdfs:range ec:MediaResource ;
+                            rdfs:label "output media resource"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasSubJob
@@ -98,40 +129,125 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 
 
 #################################################################
+#    Data properties
+#################################################################
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobDescription
+ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain ccdm:ProductionJob ;
+                              rdfs:range rdfs:Literal .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobId
+ccdm:productionJobId rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain ccdm:ProductionJob ;
+                     rdfs:range xsd:anyURI ,
+                                xsd:string .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobName
+ccdm:productionJobName rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain ccdm:ProductionJob ;
+                       rdfs:range rdfs:Literal .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
+ec:end rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:domain :ProcessEvent .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
+ec:endEditUnit rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
+ec:endNormalPlayTime rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
+ec:endTimecode rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
+ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
+ec:start rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:domain :ProcessEvent .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
+ec:startEditUnit rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
+ec:startNormalPlayTime rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
+ec:startTimecode rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
+ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf ec:start .
+
+
+#################################################################
 #    Classes
 #################################################################
 
 ###  http://www.aes.org/ontologies/X098#Device
 :Device rdf:type owl:Class ;
-        rdfs:subClassOf ccdm:ProductionDevice .
+        rdfs:subClassOf ccdm:ProductionDevice ;
+        rdfs:label "Device"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#DeviceChannel
-:DeviceChannel rdf:type owl:Class .
+:DeviceChannel rdf:type owl:Class ;
+               rdfs:label "Device Channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#DeviceParameter
-:DeviceParameter rdf:type owl:Class .
+:DeviceParameter rdf:type owl:Class ;
+                 rdfs:label "Device parameter"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#Dynamic
 :Dynamic rdf:type owl:Class ;
-         rdfs:subClassOf :ProcessEvent .
+         rdfs:subClassOf :ProcessEvent ;
+         rdfs:label "Dynamic"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#Filter
 :Filter rdf:type owl:Class ;
-        rdfs:subClassOf :ProcessEvent .
+        rdfs:subClassOf :ProcessEvent ;
+        rdfs:label "Filter"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#ProcessEvent
 :ProcessEvent rdf:type owl:Class ;
-              rdfs:subClassOf ccdm:ProductionJob .
+              rdfs:subClassOf ccdm:ProductionJob ;
+              rdfs:label "Process event"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#QualityAssurance
 :QualityAssurance rdf:type owl:Class ;
-                  rdfs:subClassOf :ProcessEvent .
+                  rdfs:subClassOf :ProcessEvent ;
+                  rdfs:label "Quality assurance"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
@@ -147,6 +263,16 @@ ccdm:ProductionJob rdf:type owl:Class ;
       manipulate/create/modify/store/etc. MediaResources and Essences as defined in an associated
       EditorialObject. It is ordered by Contract."""@en ;
                    rdfs:label "Production Job"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#EditorialObject
+ec:EditorialObject rdf:type owl:Class ;
+                   rdfs:label "Editorial object"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
+ec:MediaResource rdf:type owl:Class ;
+                 rdfs:label "Media resource"@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Consept
