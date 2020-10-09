@@ -13,7 +13,8 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @base <http://www.aes.org/ontologies/X098> .
 
-<http://www.aes.org/ontologies/X098> rdf:type owl:Ontology .
+<http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
+                                      owl:versionInfo 0.1 .
 
 #################################################################
 #    Object Properties
