@@ -83,11 +83,32 @@
                                  rdfs:label "timeline fraction prosess event"@en .
 
 
+###  http://www.aes.org/ontologies/X098#reformattingReference
+:reformattingReference rdf:type owl:ObjectProperty ;
+                       rdfs:domain :ProcessEvent ;
+                       rdfs:range skos:Consept ;
+                       rdfs:comment "reformatting reference"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#sendsToBus
 :sendsToBus rdf:type owl:ObjectProperty ;
             rdfs:domain :DeviceParameter ;
             rdfs:range :DeviceChannel ;
             rdfs:label "sends to bus"@en .
+
+
+###  http://www.aes.org/ontologies/X098#trackReference
+:trackReference rdf:type owl:ObjectProperty ;
+                rdfs:domain :ProcessEvent ;
+                rdfs:range ec:Track ;
+                rdfs:label "track reference"@en .
+
+
+###  http://www.aes.org/ontologies/X098#transitionType
+:transitionType rdf:type owl:ObjectProperty ;
+                rdfs:domain :ProcessEvent ;
+                rdfs:range skos:Consept ;
+                rdfs:label "transitionType"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasAssociatedProductionJob
@@ -133,6 +154,57 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
+:inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :ProcessEvent ;
+                        rdfs:range xsd:boolean ;
+                        rdfs:label "input file status deleted?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#processEventDescription
+:processEventDescription rdf:type owl:DatatypeProperty ;
+                         rdfs:domain :ProcessEvent ;
+                         rdfs:range rdfs:Literal ;
+                         rdfs:label "process event description"@en .
+
+
+###  http://www.aes.org/ontologies/X098#processEventId
+:processEventId rdf:type owl:DatatypeProperty ;
+                rdfs:domain :ProcessEvent ;
+                rdfs:range xsd:anyURI ,
+                           xsd:string ;
+                rdfs:label "process event identificator"@en .
+
+
+###  http://www.aes.org/ontologies/X098#processEventName
+:processEventName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ProcessEvent ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "process event name"@en .
+
+
+###  http://www.aes.org/ontologies/X098#processEventType
+:processEventType rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ProcessEvent ;
+                  rdfs:range xsd:anyURI ,
+                             xsd:string ;
+                  rdfs:label "process event type"@en .
+
+
+###  http://www.aes.org/ontologies/X098#reformattingText
+:reformattingText rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :ProcessEvent ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:label "reformating text"@en .
+
+
+###  http://www.aes.org/ontologies/X098#sequenceNum
+:sequenceNum rdf:type owl:DatatypeProperty ;
+             rdfs:domain :ProcessEvent ;
+             rdfs:range xsd:int ;
+             rdfs:label "sequence number"@en .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobDescription
 ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
                               rdfs:subPropertyOf owl:topDataProperty ;
@@ -155,9 +227,17 @@ ccdm:productionJobName rdf:type owl:DatatypeProperty ;
                        rdfs:range rdfs:Literal .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobType
+ccdm:productionJobType rdf:type owl:DatatypeProperty ;
+                       rdfs:domain ccdm:ProductionJob ;
+                       rdfs:range xsd:anyURI ,
+                                  xsd:string ;
+                       rdfs:comment "Range: string or anyURI or skos:ConceptId"@en ;
+                       rdfs:label "production job type"@en .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
 ec:end rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf owl:topDataProperty ;
        rdfs:domain :ProcessEvent .
 
 
@@ -183,7 +263,6 @@ ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
 ec:start rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf owl:topDataProperty ;
          rdfs:domain :ProcessEvent .
 
 
@@ -274,6 +353,11 @@ ec:EditorialObject rdf:type owl:Class ;
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
 ec:MediaResource rdf:type owl:Class ;
                  rdfs:label "Media resource"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Track
+ec:Track rdf:type owl:Class ;
+         rdfs:label "Track"@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Consept
