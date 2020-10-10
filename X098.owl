@@ -157,7 +157,7 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 ###  http://www.aes.org/ontologies/X098#dynamicCompAttack
 :dynamicCompAttack rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Dynamic ;
-                   rdfs:label "ff"@en .
+                   rdfs:label "dynamic compression attack"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompRatio
@@ -250,6 +250,13 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                   rdfs:range xsd:anyURI ,
                              xsd:string ;
                   rdfs:label "process event type"@en .
+
+
+###  http://www.aes.org/ontologies/X098#qualityAssuranceFail
+:qualityAssuranceFail rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :QualityAssurance ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:label "quality assurance fail?"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#reformattingText
