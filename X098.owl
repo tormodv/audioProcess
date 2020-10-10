@@ -154,6 +154,67 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://www.aes.org/ontologies/X098#dynamicCompAttack
+:dynamicCompAttack rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Dynamic ;
+                   rdfs:label "ff"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompRatio
+:dynamicCompRatio rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Dynamic ;
+                  rdfs:label "dynamic compression ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompRelease
+:dynamicCompRelease rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Dynamic ;
+                    rdfs:label "dynamic compression release"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompTresh
+:dynamicCompTresh rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Dynamic ;
+                  rdfs:label "dynamic compression treshhold"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpAttack
+:dynamicExpAttack rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Dynamic ;
+                  rdfs:label "dynamic expander attack"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpRatio
+:dynamicExpRatio rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Dynamic ;
+                 rdfs:label "dynamic expander ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpRelease
+:dynamicExpRelease rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Dynamic ;
+                   rdfs:label "dynamic expander release"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpTresh
+:dynamicExpTresh rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Dynamic ;
+                 rdfs:label "dynamic expander treshold"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicGate
+:dynamicGate rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Dynamic ;
+             rdfs:range xsd:boolean ;
+             rdfs:label "dynamic gate?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicGateFlor
+:dynamicGateFlor rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Dynamic ;
+                 rdfs:label "dynamic gate flor"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
 :inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
                         rdfs:domain :ProcessEvent ;
@@ -238,7 +299,8 @@ ccdm:productionJobType rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
 ec:end rdf:type owl:DatatypeProperty ;
-       rdfs:domain :ProcessEvent .
+       rdfs:domain :ProcessEvent ;
+       rdfs:range rdfs:Literal .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
@@ -263,7 +325,8 @@ ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
 ec:start rdf:type owl:DatatypeProperty ;
-         rdfs:domain :ProcessEvent .
+         rdfs:domain :ProcessEvent ;
+         rdfs:range rdfs:Literal .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
