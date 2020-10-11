@@ -14,7 +14,10 @@
 @base <http://www.aes.org/ontologies/X098> .
 
 <http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
-                                      <http://purl.org/dc/terms/title> "AES X098 Audio preservation"@nb ;
+                                      <http://purl.org/dc/terms/creator> "AES SC-03-07"@en ;
+                                      <http://purl.org/dc/terms/title> """AES X098C AES standard for metadata – 
+Process and handling history
+of audio objects"""@en ;
                                       owl:versionInfo 0.2 .
 
 #################################################################
