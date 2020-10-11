@@ -14,7 +14,20 @@
 @base <http://www.aes.org/ontologies/X098> .
 
 <http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
-                                      owl:versionInfo 0.1 .
+                                      <http://purl.org/dc/terms/title> "AES X098 Audio preservation"@nb ;
+                                      owl:versionInfo 0.2 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
 
 #################################################################
 #    Object Properties
@@ -83,6 +96,13 @@
                                  rdfs:label "timeline fraction prosess event"@en .
 
 
+###  http://www.aes.org/ontologies/X098#interfaceType
+:interfaceType rdf:type owl:ObjectProperty ;
+               rdfs:domain :DeviceChannel ;
+               rdfs:range skos:Consept ;
+               rdfs:label "interface type" .
+
+
 ###  http://www.aes.org/ontologies/X098#reformattingReference
 :reformattingReference rdf:type owl:ObjectProperty ;
                        rdfs:domain :ProcessEvent ;
@@ -95,6 +115,12 @@
             rdfs:domain :DeviceParameter ;
             rdfs:range :DeviceChannel ;
             rdfs:label "sends to bus"@en .
+
+
+###  http://www.aes.org/ontologies/X098#settingsProfile
+:settingsProfile rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Device ;
+                 rdfs:range ec:Resource .
 
 
 ###  http://www.aes.org/ontologies/X098#trackReference
@@ -153,6 +179,31 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.aes.org/ontologies/X098#deviceChannelDescription
+:deviceChannelDescription rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :DeviceChannel ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:label "device channel description"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceChannelId
+:deviceChannelId rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :DeviceChannel ;
+                 rdfs:range [ rdf:type rdfs:Datatype ;
+                              owl:unionOf ( xsd:anyURI
+                                            xsd:string
+                                          )
+                            ] ;
+                 rdfs:label "device channel identificator"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceChannelName
+:deviceChannelName rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :DeviceChannel ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "device channel name"@en .
+
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompAttack
 :dynamicCompAttack rdf:type owl:DatatypeProperty ;
@@ -215,11 +266,54 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                  rdfs:label "dynamic gate flor"@en .
 
 
+###  http://www.aes.org/ontologies/X098#filterEqFreq
+:filterEqFreq rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Filter ;
+              rdfs:label "equliser frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterEqGain
+:filterEqGain rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Filter ;
+              rdfs:label "equliser gain"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterEqQfactor
+:filterEqQfactor rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Filter ;
+                 rdfs:label "equliser q-factor"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterHighPassFreq
+:filterHighPassFreq rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Filter ;
+                    rdfs:label "high pass frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterLowPassFreq
+:filterLowPassFreq rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Filter ;
+                   rdfs:label "low pass frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#functionalRole
+:functionalRole rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Device ;
+                rdfs:label "functional role"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
 :inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
                         rdfs:domain :ProcessEvent ;
                         rdfs:range xsd:boolean ;
                         rdfs:label "input file status deleted?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#playbackMediaChannel
+:playbackMediaChannel rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :DeviceChannel ;
+                      rdfs:comment "Check range! ***"@en ;
+                      rdfs:label "playback media channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#processEventDescription
@@ -232,8 +326,11 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 ###  http://www.aes.org/ontologies/X098#processEventId
 :processEventId rdf:type owl:DatatypeProperty ;
                 rdfs:domain :ProcessEvent ;
-                rdfs:range xsd:anyURI ,
-                           xsd:string ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:unionOf ( xsd:anyURI
+                                           xsd:string
+                                         )
+                           ] ;
                 rdfs:label "process event identificator"@en .
 
 
@@ -247,9 +344,23 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 ###  http://www.aes.org/ontologies/X098#processEventType
 :processEventType rdf:type owl:DatatypeProperty ;
                   rdfs:domain :ProcessEvent ;
-                  rdfs:range xsd:anyURI ,
-                             xsd:string ;
+                  rdfs:range [ rdf:type rdfs:Datatype ;
+                               owl:unionOf ( xsd:anyURI
+                                             xsd:string
+                                           )
+                             ] ;
                   rdfs:label "process event type"@en .
+
+
+###  http://www.aes.org/ontologies/X098#productionDeviceId
+:productionDeviceId rdf:type owl:DatatypeProperty ;
+                    rdfs:domain ccdm:ProductionDevice ;
+                    rdfs:range [ rdf:type rdfs:Datatype ;
+                                 owl:unionOf ( xsd:anyURI
+                                               xsd:string
+                                             )
+                               ] ;
+                    rdfs:label "production device identificator"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#qualityAssuranceFail
@@ -257,6 +368,13 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                       rdfs:domain :QualityAssurance ;
                       rdfs:range xsd:boolean ;
                       rdfs:label "quality assurance fail?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#recordMediaChannel
+:recordMediaChannel rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :DeviceChannel ;
+                    rdfs:comment "Check range! ***"@en ;
+                    rdfs:label "record media channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#reformattingText
@@ -273,6 +391,42 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
              rdfs:label "sequence number"@en .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceDescription
+ccdm:productionDeviceDescription rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain ccdm:ProductionDevice ;
+                                 rdfs:range rdfs:Literal ;
+                                 rdfs:label "production device description"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceId
+ccdm:productionDeviceId rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ccdm:ProductionDevice ;
+                        rdfs:range [ rdf:type rdfs:Datatype ;
+                                     owl:unionOf ( xsd:anyURI
+                                                   xsd:string
+                                                 )
+                                   ] ;
+                        rdfs:label "production device identifier"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceName
+ccdm:productionDeviceName rdf:type owl:DatatypeProperty ;
+                          rdfs:domain ccdm:ProductionDevice ;
+                          rdfs:range xsd:string ;
+                          rdfs:label "production device name"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceType
+ccdm:productionDeviceType rdf:type owl:DatatypeProperty ;
+                          rdfs:domain ccdm:ProductionDevice ;
+                          rdfs:range [ rdf:type rdfs:Datatype ;
+                                       owl:unionOf ( xsd:anyURI
+                                                     xsd:string
+                                                   )
+                                     ] ;
+                          rdfs:label "production device type"@en .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobDescription
 ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
                               rdfs:subPropertyOf owl:topDataProperty ;
@@ -284,8 +438,11 @@ ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
 ccdm:productionJobId rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf owl:topDataProperty ;
                      rdfs:domain ccdm:ProductionJob ;
-                     rdfs:range xsd:anyURI ,
-                                xsd:string .
+                     rdfs:range [ rdf:type rdfs:Datatype ;
+                                  owl:unionOf ( xsd:anyURI
+                                                xsd:string
+                                              )
+                                ] .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobName
@@ -298,8 +455,11 @@ ccdm:productionJobName rdf:type owl:DatatypeProperty ;
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobType
 ccdm:productionJobType rdf:type owl:DatatypeProperty ;
                        rdfs:domain ccdm:ProductionJob ;
-                       rdfs:range xsd:anyURI ,
-                                  xsd:string ;
+                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                    owl:unionOf ( xsd:anyURI
+                                                  xsd:string
+                                                )
+                                  ] ;
                        rdfs:comment "Range: string or anyURI or skos:ConceptId"@en ;
                        rdfs:label "production job type"@en .
 
@@ -423,6 +583,11 @@ ec:EditorialObject rdf:type owl:Class ;
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
 ec:MediaResource rdf:type owl:Class ;
                  rdfs:label "Media resource"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Resource
+ec:Resource rdf:type owl:Class ;
+            rdfs:label "Resource" .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Track
