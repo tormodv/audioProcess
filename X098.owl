@@ -2,6 +2,7 @@
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix ec: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix ex: <http://example.com/x98/test#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -18,7 +19,8 @@
                                       <http://purl.org/dc/terms/title> """AES X098C AES standard for metadata – 
 Process and handling history
 of audio objects"""@en ;
-                                      owl:versionInfo 0.2 .
+                                      owl:versionInfo 0.3 ,
+                                                      "The first draft of a straightforward instance of example data"@en .
 
 #################################################################
 #    Annotation properties
@@ -26,6 +28,10 @@ of audio objects"""@en ;
 
 ###  http://purl.org/dc/terms/creator
 <http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/title
@@ -177,6 +183,13 @@ ccdm:hasSubJob rdf:type owl:ObjectProperty ;
                rdfs:label "Production job"@en .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#instantiates
+ccdm:instantiates rdf:type owl:ObjectProperty ;
+                  rdfs:domain ec:Resource ;
+                  rdfs:range ec:EditorialObject ;
+                  rdfs:label "instantiates"@en .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
 ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                           rdfs:domain ccdm:ProductionJob ;
@@ -189,6 +202,14 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.aes.org/ontologies/X098#creationDate
+:creationDate rdf:type owl:DatatypeProperty ;
+              rdfs:domain :ProcessEvent ;
+              rdfs:range xsd:dateTimeStamp ;
+              <http://purl.org/dc/terms/description> "The creationData element shall be used to indicate the time and date the enclosing processEvent occurred."@en ;
+              rdfs:label "creation date"@en .
+
 
 ###  http://www.aes.org/ontologies/X098#deviceChannelDescription
 :deviceChannelDescription rdf:type owl:DatatypeProperty ;
@@ -498,14 +519,12 @@ ccdm:productionDeviceType rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobDescription
 ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
-                              rdfs:subPropertyOf owl:topDataProperty ;
                               rdfs:domain ccdm:ProductionJob ;
                               rdfs:range rdfs:Literal .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobId
 ccdm:productionJobId rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf owl:topDataProperty ;
                      rdfs:domain ccdm:ProductionJob ;
                      rdfs:range [ rdf:type rdfs:Datatype ;
                                   owl:unionOf ( xsd:anyURI
@@ -516,7 +535,6 @@ ccdm:productionJobId rdf:type owl:DatatypeProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobName
 ccdm:productionJobName rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf owl:topDataProperty ;
                        rdfs:domain ccdm:ProductionJob ;
                        rdfs:range rdfs:Literal .
 
@@ -589,6 +607,11 @@ ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty ;
 #    Classes
 #################################################################
 
+###  http://www.aes.org/ontologies/X098#ChannelType
+:ChannelType rdf:type owl:Class ;
+             rdfs:label "Channel type"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#Device
 :Device rdf:type owl:Class ;
         rdfs:subClassOf ccdm:ProductionDevice ;
@@ -656,6 +679,7 @@ ec:EditorialObject rdf:type owl:Class ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
 ec:MediaResource rdf:type owl:Class ;
+                 rdfs:subClassOf ec:Resource ;
                  rdfs:label "Media resource"@en .
 
 
@@ -671,6 +695,46 @@ ec:Track rdf:type owl:Class ;
 
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/x98/test#destinationFile
+ex:destinationFile rdf:type owl:NamedIndividual ,
+                            ec:MediaResource .
+
+
+###  http://example.com/x98/test#restauration
+ex:restauration rdf:type owl:NamedIndividual ,
+                         ccdm:ProductionJob ;
+                ccdm:hasInputMediaResource ex:sourceFile ;
+                ccdm:hasOutputMediaResource ex:destinationFile .
+
+
+###  http://example.com/x98/test#someRestaurationProject
+ex:someRestaurationProject rdf:type owl:NamedIndividual ,
+                                    :ProcessEvent ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex:restauration ;
+                           :sequenceNum "1"^^xsd:int ;
+                           ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
+                           ccdm:productionJobName "Example of simple job"@en ;
+                           rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
+This example will not cover this in details, the properties you need will be covered by EBU CCDM and/or EBU"""@en .
+
+
+###  http://example.com/x98/test#sourceDescription
+ex:sourceDescription rdf:type owl:NamedIndividual ,
+                              ec:EditorialObject ;
+                     rdfs:comment "The description of the original using attributes from EBU Core/AES60"@en .
+
+
+###  http://example.com/x98/test#sourceFile
+ex:sourceFile rdf:type owl:NamedIndividual ,
+                       ec:MediaResource ;
+              ccdm:instantiates ex:sourceDescription .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
