@@ -675,12 +675,14 @@ skos:notation rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#Dynamic
 :Dynamic rdf:type owl:Class ;
          rdfs:subClassOf :ProcessEvent ;
+         dcterms:description "Parameters for dynamic process events"@en ;
          rdfs:label "Dynamic"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#Filter
 :Filter rdf:type owl:Class ;
         rdfs:subClassOf :ProcessEvent ;
+        dcterms:description "Parameters for filter process events"@en ;
         rdfs:label "Filter"@en .
 
 
@@ -753,21 +755,22 @@ ex:destinationFile rdf:type owl:NamedIndividual ,
                             ec:MediaResource .
 
 
-###  http://example.com/x98/test#restauration
-ex:restauration rdf:type owl:NamedIndividual ,
-                         ccdm:ProductionJob ;
-                ccdm:hasInputMediaResource ex:sourceFile ;
-                ccdm:hasOutputMediaResource ex:destinationFile .
+###  http://example.com/x98/test#restauration_step_1
+ex:restauration_step_1 rdf:type owl:NamedIndividual ,
+                                :Filter ,
+                                ccdm:ProductionJob ;
+                       ccdm:hasInputMediaResource ex:sourceFile ;
+                       ccdm:hasOutputMediaResource ex:destinationFile ;
+                       :filterHighPassFreq "80"^^xsd:int ;
+                       :sequenceNum "1"^^xsd:int ;
+                       ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
+                       ccdm:productionJobName "Example of simple job"@en .
 
 
 ###  http://example.com/x98/test#someRestaurationProject
 ex:someRestaurationProject rdf:type owl:NamedIndividual ,
-                                    :ProcessEvent ,
                                     ec:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex:restauration ;
-                           :sequenceNum "1"^^xsd:int ;
-                           ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
-                           ccdm:productionJobName "Example of simple job"@en ;
+                           ccdm:hasAssociatedProductionJob ex:restauration_step_1 ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
 This example will not cover this in details, the properties you need will be covered by EBU CCDM and/or EBU"""@en .
 
@@ -775,7 +778,7 @@ This example will not cover this in details, the properties you need will be cov
 ###  http://example.com/x98/test#sourceDescription
 ex:sourceDescription rdf:type owl:NamedIndividual ,
                               ec:EditorialObject ;
-                     rdfs:comment "The description of the original using attributes from EBU Core/AES60"@en .
+                     rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
 
 
 ###  http://example.com/x98/test#sourceFile
