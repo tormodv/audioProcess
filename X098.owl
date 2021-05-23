@@ -12,14 +12,16 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vfnc: <http://www.aes.org/ontologies/X098/vocabulary/functional#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://www.aes.org/ontologies/X098> .
 
 <http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
-                                      <http://purl.org/dc/terms/creator> "AES SC-03-07"@en ;
-                                      <http://purl.org/dc/terms/title> """AES X098C AES standard for metadata – 
+                                      dcterms:creator "AES SC-03-07"@en ;
+                                      dcterms:title """AES X098C AES standard for metadata – 
 Process and handling history
 of audio objects"""@en ;
-                                      owl:versionInfo 0.3 ,
+                                      owl:versionInfo 0.4 ,
                                                       "The first draft of a straightforward instance of example data"@en .
 
 #################################################################
@@ -27,15 +29,20 @@ of audio objects"""@en ;
 #################################################################
 
 ###  http://purl.org/dc/terms/creator
-<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+dcterms:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/description
-<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/title
-<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty ;
+               rdfs:subPropertyOf rdfs:label .
 
 
 #################################################################
@@ -61,6 +68,14 @@ of audio objects"""@en ;
                      rdfs:domain :ProcessEvent ;
                      rdfs:range :ProcessEvent ;
                      rdfs:label "feeds side chain input"@en .
+
+
+###  http://www.aes.org/ontologies/X098#functionalRole
+:functionalRole rdf:type owl:ObjectProperty ;
+                rdfs:domain :Device ;
+                rdfs:range skos:Consept ;
+                dcterms:description "Using values from vfnc:Scheme"@en ;
+                rdfs:label "functional role"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDeviceParameter
@@ -199,6 +214,13 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                           rdfs:label "Production Device"@en .
 
 
+###  http://www.w3.org/2004/02/skos/core#inScheme
+skos:inScheme rdf:type owl:ObjectProperty ;
+              rdfs:domain skos:Consept ;
+              rdfs:range skos:ConceptScheme ;
+              rdfs:label "in scheme"@en .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -207,7 +229,7 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 :creationDate rdf:type owl:DatatypeProperty ;
               rdfs:domain :ProcessEvent ;
               rdfs:range xsd:dateTimeStamp ;
-              <http://purl.org/dc/terms/description> "The creationData element shall be used to indicate the time and date the enclosing processEvent occurred."@en ;
+              dcterms:description "The creationData element shall be used to indicate the time and date the enclosing processEvent occurred."@en ;
               rdfs:label "creation date"@en .
 
 
@@ -384,12 +406,6 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
 :filterLowPassFreq rdf:type owl:DatatypeProperty ;
                    rdfs:domain :Filter ;
                    rdfs:label "low pass frequency"@en .
-
-
-###  http://www.aes.org/ontologies/X098#functionalRole
-:functionalRole rdf:type owl:DatatypeProperty ;
-                rdfs:domain :Device ;
-                rdfs:label "functional role"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
@@ -603,29 +619,52 @@ ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty ;
                           rdfs:subPropertyOf ec:start .
 
 
+###  http://www.w3.org/2004/02/skos/core#notation
+skos:notation rdf:type owl:DatatypeProperty ;
+              rdfs:label "natation"@en .
+
+
 #################################################################
 #    Classes
 #################################################################
 
 ###  http://www.aes.org/ontologies/X098#ChannelType
 :ChannelType rdf:type owl:Class ;
+             rdfs:comment "***opt***"@en ;
              rdfs:label "Channel type"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#Device
 :Device rdf:type owl:Class ;
         rdfs:subClassOf ccdm:ProductionDevice ;
+        dcterms:description "The device element shall be used to describe the setup and characteristics of a single device in the signal graph."@en ;
         rdfs:label "Device"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#DeviceChannel
 :DeviceChannel rdf:type owl:Class ;
-               rdfs:subClassOf [ rdf:type owl:Restriction ;
+               rdfs:subClassOf :ChannelType ,
+                               [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasDeviceParameter ;
                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :DeviceParameter
                                ] ;
+               dcterms:description "The DeviceChanel is an abstract class that serves as a base  for DeviceInputChanel and DeviceOutputChannel."@en ;
                rdfs:label "Device Channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceInputChannel
+:DeviceInputChannel rdf:type owl:Class ;
+                    rdfs:subClassOf :DeviceChannel ;
+                    dcterms:description "The DeviceInputChannel element shall be used to represent a single input connection on the device. One inputChannel element shall be present for each audio stream passing through a physical input connection that is used on the device."@en ;
+                    rdfs:label "Device input channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceOutputChannel
+:DeviceOutputChannel rdf:type owl:Class ;
+                     rdfs:subClassOf :DeviceChannel ;
+                     dcterms:description "The DeviceOutputChannel element shall be used to represent a single output connection on the device. One DeviceOutputChannel shall be present for each audio stream passing through a physical output connection that is used on the device."@en ;
+                     rdfs:label "Device output channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#DeviceParameter
@@ -648,6 +687,9 @@ ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#ProcessEvent
 :ProcessEvent rdf:type owl:Class ;
               rdfs:subClassOf ccdm:ProductionJob ;
+              dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
+
+NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
               rdfs:label "Process event"@en .
 
 
@@ -693,6 +735,11 @@ ec:Track rdf:type owl:Class ;
          rdfs:label "Track"@en .
 
 
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+skos:ConceptScheme rdf:type owl:Class ;
+                   rdfs:label "Concept scheme"@en .
+
+
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class .
 
@@ -735,6 +782,236 @@ ex:sourceDescription rdf:type owl:NamedIndividual ,
 ex:sourceFile rdf:type owl:NamedIndividual ,
                        ec:MediaResource ;
               ccdm:instantiates ex:sourceDescription .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#AnalogToDigitalConverter
+vfnc:AnalogToDigitalConverter rdf:type owl:NamedIndividual ,
+                                       skos:Consept ;
+                              skos:inScheme vfnc:Scheme ;
+                              skos:notation "ANALOG_TO_DIGITAL_CONVERTER"^^xsd:string ;
+                              skos:prefLabel "Analog to digital converter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Cleaner
+vfnc:Cleaner rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "CLEANER"^^xsd:string ;
+             skos:prefLabel "Cleaner"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#ConvectionOven
+vfnc:ConvectionOven rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "CONVECTION_OVEN"^^xsd:string ;
+                    skos:prefLabel "Convection oven"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Decoder
+vfnc:Decoder rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "DECODER"^^xsd:string ;
+             skos:prefLabel "Decoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Deesser
+vfnc:Deesser rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "DE-ESSER"^^xsd:string ;
+             skos:prefLabel "De-esser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DelayEffect
+vfnc:DelayEffect rdf:type owl:NamedIndividual ,
+                          skos:Consept ;
+                 skos:inScheme vfnc:Scheme ;
+                 skos:notation "DELAY_EFFECT"^^xsd:string ;
+                 skos:prefLabel "Delay effect"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Denoiser
+vfnc:Denoiser rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "DENOISER"^^xsd:string ;
+              skos:prefLabel "Denoiser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DigitalToAnalogConverter
+vfnc:DigitalToAnalogConverter rdf:type owl:NamedIndividual ,
+                                       skos:Consept ;
+                              skos:inScheme vfnc:Scheme ;
+                              skos:notation "DIGITAL_TO_ANALOG_CONVERTER"^^xsd:string ;
+                              skos:prefLabel "Digital to analog converter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DistributionAmplifier
+vfnc:DistributionAmplifier rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "DISTRIBUTION_AMPLIFIER"^^xsd:string ;
+                           skos:prefLabel "Distribution amplifier"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicCompressor
+vfnc:DynamicCompressor rdf:type owl:NamedIndividual ,
+                                skos:Consept ;
+                       skos:inScheme vfnc:Scheme ;
+                       skos:notation "DYNAMIC_COMPRESSOR"^^xsd:string ;
+                       skos:prefLabel "Dynamic compressor"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicEqualiser
+vfnc:DynamicEqualiser rdf:type owl:NamedIndividual ,
+                               skos:Consept ;
+                      skos:inScheme vfnc:Scheme ;
+                      skos:notation "DYNAMIC_EQUALISER"^^xsd:string ;
+                      skos:prefLabel "Dynamic equaliser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicExpander
+vfnc:DynamicExpander rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "DYNAMIC_EXPANDER"^^xsd:string ;
+                     skos:prefLabel "Dynamic expander"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicLimiter
+vfnc:DynamicLimiter rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "DYNAMIC_LIMITER"^^xsd:string ;
+                    skos:prefLabel "Dynamic limiter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Encoder
+vfnc:Encoder rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "ENCODER"^^xsd:string ;
+             skos:prefLabel "Encoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#EqualiserFilter
+vfnc:EqualiserFilter rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "EQUALISER/FILTER"^^xsd:string ;
+                     skos:prefLabel "Equaliser/filter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#LineBalanceInterfaceTransformer
+vfnc:LineBalanceInterfaceTransformer rdf:type owl:NamedIndividual ,
+                                              skos:Consept ;
+                                     skos:inScheme vfnc:Scheme ;
+                                     skos:notation "LINE_BALANCE_INTERFACE/TRANSFORMER"^^xsd:string ;
+                                     skos:prefLabel "Line balance interface/transformer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Mixer
+vfnc:Mixer rdf:type owl:NamedIndividual ,
+                    skos:Consept ;
+           skos:inScheme vfnc:Scheme ;
+           skos:notation "MIXER"^^xsd:string ;
+           skos:prefLabel "Mixer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#MsMatrix
+vfnc:MsMatrix rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "MS_MATRIX"^^xsd:string ;
+              skos:prefLabel "MS matrix"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#NoiseReductionDecoder
+vfnc:NoiseReductionDecoder rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "NOISE_REDUCTION_DECODER"^^xsd:string ;
+                           skos:prefLabel "Noise reduction decoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#NoiseReductionEncoder
+vfnc:NoiseReductionEncoder rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "NOISE_REDUCTION_ENCODER"^^xsd:string ;
+                           skos:prefLabel "Noise reduction encoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Preamplifier
+vfnc:Preamplifier rdf:type owl:NamedIndividual ,
+                           skos:Consept ;
+                  skos:inScheme vfnc:Scheme ;
+                  skos:notation "PREAMPLIFIER"^^xsd:string ;
+                  skos:prefLabel "Preamplifier"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Recorder
+vfnc:Recorder rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "RECORDER"^^xsd:string ;
+              skos:prefLabel "Recorder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Reproducer
+vfnc:Reproducer rdf:type owl:NamedIndividual ,
+                         skos:Consept ;
+                skos:inScheme vfnc:Scheme ;
+                skos:notation "REPRODUCER"^^xsd:string ;
+                skos:prefLabel "Reproducer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#ReproducerRecorder
+vfnc:ReproducerRecorder rdf:type owl:NamedIndividual ,
+                                 skos:Consept ;
+                        skos:inScheme vfnc:Scheme ;
+                        skos:notation "REPRODUCER/RECORDER"^^xsd:string ;
+                        skos:prefLabel "Reproducer/Recorder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Scheme
+vfnc:Scheme rdf:type owl:NamedIndividual ,
+                     skos:ConceptScheme ;
+            skos:prefLabel "General classification for audio equipment"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalAnalyzer
+vfnc:SignalAnalyzer rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "SIGNAL_ANALYZER"^^xsd:string ;
+                    skos:prefLabel "signal analyzer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalGenerator
+vfnc:SignalGenerator rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "SIGNAL_GENERATOR"^^xsd:string ;
+                     skos:prefLabel "Signal generator"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalProcessor
+vfnc:SignalProcessor rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "SIGNAL_PROCESSOR"^^xsd:string ;
+                     skos:prefLabel "Signal processor"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SpacialEffect
+vfnc:SpacialEffect rdf:type owl:NamedIndividual ,
+                            skos:Consept ;
+                   skos:inScheme vfnc:Scheme ;
+                   skos:notation "SPACIAL_EFFECT"^^xsd:string ;
+                   skos:prefLabel "Spacial effect"@en .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
