@@ -198,13 +198,6 @@ ccdm:hasSubJob rdf:type owl:ObjectProperty ;
                rdfs:label "Production job"@en .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#instantiates
-ccdm:instantiates rdf:type owl:ObjectProperty ;
-                  rdfs:domain ec:Resource ;
-                  rdfs:range ec:EditorialObject ;
-                  rdfs:label "instantiates"@en .
-
-
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
 ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                           rdfs:domain ccdm:ProductionJob ;
@@ -212,6 +205,13 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                           rdfs:comment """To identify a ProductionDevice associated to a
       ProductionJob."""@en ;
                           rdfs:label "Production Device"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
+ec:instantiates rdf:type owl:ObjectProperty ;
+                rdfs:domain ec:Resource ;
+                rdfs:range ec:EditorialObject ;
+                rdfs:label "instantiates"@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#inScheme
@@ -750,29 +750,33 @@ skos:Consept rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+###  http://example.com/x98/test#RestaurationProject_A
+ex:RestaurationProject_A rdf:type owl:NamedIndividual ,
+                                  ec:EditorialObject ;
+                         ccdm:hasAssociatedProductionJob ex:restauration_A_step_1 ;
+                         rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
+This example will not cover this in details, the properties you need will be covered by EBU CCDM and/or EBU"""@en .
+
+
 ###  http://example.com/x98/test#destinationFile
 ex:destinationFile rdf:type owl:NamedIndividual ,
-                            ec:MediaResource .
+                            ec:MediaResource ;
+                   rdfs:comment """Generic destination file. 
+See EBU Core/CCDM for further attributes."""@en .
 
 
-###  http://example.com/x98/test#restauration_step_1
-ex:restauration_step_1 rdf:type owl:NamedIndividual ,
-                                :Filter ,
-                                ccdm:ProductionJob ;
-                       ccdm:hasInputMediaResource ex:sourceFile ;
-                       ccdm:hasOutputMediaResource ex:destinationFile ;
-                       :filterHighPassFreq "80"^^xsd:int ;
-                       :sequenceNum "1"^^xsd:int ;
-                       ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
-                       ccdm:productionJobName "Example of simple job"@en .
-
-
-###  http://example.com/x98/test#someRestaurationProject
-ex:someRestaurationProject rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex:restauration_step_1 ;
-                           rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
-This example will not cover this in details, the properties you need will be covered by EBU CCDM and/or EBU"""@en .
+###  http://example.com/x98/test#restauration_A_step_1
+ex:restauration_A_step_1 rdf:type owl:NamedIndividual ,
+                                  :Filter ,
+                                  ccdm:ProductionJob ;
+                         ccdm:hasInputMediaResource ex:sourceFile ;
+                         ccdm:hasOutputMediaResource ex:destinationFile ;
+                         :filterHighPassFreq "80"^^xsd:int ;
+                         :sequenceNum "1"^^xsd:int ;
+                         ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
+                         ccdm:productionJobName "Example of simple job A"@en ;
+                         rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
 
 
 ###  http://example.com/x98/test#sourceDescription
@@ -784,7 +788,9 @@ ex:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/test#sourceFile
 ex:sourceFile rdf:type owl:NamedIndividual ,
                        ec:MediaResource ;
-              ccdm:instantiates ex:sourceDescription .
+              ec:instantiates ex:sourceDescription ;
+              rdfs:comment """Some generic source file for the audio.
+Se EBU Core/CCDM for usage."""@en .
 
 
 ###  http://www.aes.org/ontologies/X098/vocabulary/functional#AnalogToDigitalConverter
