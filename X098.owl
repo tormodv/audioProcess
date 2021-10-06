@@ -145,7 +145,8 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 ###  http://www.aes.org/ontologies/X098#reformattingReference
 :reformattingReference rdf:type owl:ObjectProperty ;
                        rdfs:domain :ProcessEvent ;
-                       rdfs:range skos:Consept ;
+                       rdfs:range <http://xmlns.com/foaf/0.1/Document> ;
+                       dcterms:description "The reformattingReference element may be used to provide an link to the location of a text file containing discursive text about the preservation methodology"@en ;
                        rdfs:comment "reformatting reference"@en .
 
 
@@ -484,6 +485,14 @@ skos:inScheme rdf:type owl:ObjectProperty ;
                       rdfs:label "quality assurance fail?"@en .
 
 
+###  http://www.aes.org/ontologies/X098#qualityAssuranceNote
+:qualityAssuranceNote rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :QualityAssurance ;
+                      rdfs:range rdfs:Literal ;
+                      dcterms:description "The note element may be used to provide discursive text regarding the specifics of the quality assurance work and its outcome."@en ;
+                      rdfs:label "note"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#recordMediaChannel
 :recordMediaChannel rdf:type owl:DatatypeProperty ;
                     rdfs:domain :DeviceChannel ;
@@ -495,6 +504,7 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 :reformattingText rdf:type owl:DatatypeProperty ;
                   rdfs:domain :ProcessEvent ;
                   rdfs:range rdfs:Literal ;
+                  dcterms:description "The reformattingText element may be used to include discursive text about the preservation methodology directly in the processEvent."@en ;
                   rdfs:label "reformating text"@en .
 
 
@@ -700,11 +710,25 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#ProcessEvent
 :ProcessEvent rdf:type owl:Class ;
-              rdfs:subClassOf ccdm:ProductionJob ;
+              rdfs:subClassOf ccdm:ProductionJob ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :creationDate ;
+                                owl:someValuesFrom xsd:dateTime
+                              ] ;
               dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
 
 NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
               rdfs:label "Process event"@en .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :ProcessEvent ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget [ rdf:type owl:Restriction ;
+                         owl:onProperty :creationDate ;
+                         owl:someValuesFrom xsd:dateTime
+                       ] ;
+   dcterms:description "The creationDate property shall be used to indicate the time and date the enclosing qualityAssurance event occurred."@en
+ ] .
 
 
 ###  http://www.aes.org/ontologies/X098#QualityAssurance
@@ -757,6 +781,12 @@ skos:ConceptScheme rdf:type owl:Class ;
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class ;
              rdfs:label "Consept"@en .
+
+
+###  http://xmlns.com/foaf/0.1/Document
+<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class ;
+                                     dcterms:description "Document"@en ,
+                                                         "The Document class represents those things which are, broadly conceived, 'documents'."@en .
 
 
 #################################################################
