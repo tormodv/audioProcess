@@ -664,6 +664,7 @@ skos:notation rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#DeviceInputChannel
 :DeviceInputChannel rdf:type owl:Class ;
                     rdfs:subClassOf :DeviceChannel ;
+                    owl:disjointWith :DeviceOutputChannel ;
                     dcterms:description "The DeviceInputChannel element shall be used to represent a single input connection on the device. One inputChannel element shall be present for each audio stream passing through a physical input connection that is used on the device."@en ;
                     rdfs:label "Device input channel"@en .
 
@@ -683,6 +684,8 @@ skos:notation rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#Dynamic
 :Dynamic rdf:type owl:Class ;
          rdfs:subClassOf :ProcessEvent ;
+         owl:disjointWith :Filter ,
+                          :QualityAssurance ;
          dcterms:description "Parameters for dynamic process events"@en ;
          rdfs:label "Dynamic"@en .
 
@@ -690,6 +693,7 @@ skos:notation rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#Filter
 :Filter rdf:type owl:Class ;
         rdfs:subClassOf :ProcessEvent ;
+        owl:disjointWith :QualityAssurance ;
         dcterms:description "Parameters for filter process events"@en ;
         rdfs:label "Filter"@en .
 
@@ -751,7 +755,8 @@ skos:ConceptScheme rdf:type owl:Class ;
 
 
 ###  http://www.w3.org/2004/02/skos/core#Consept
-skos:Consept rdf:type owl:Class .
+skos:Consept rdf:type owl:Class ;
+             rdfs:label "Consept"@en .
 
 
 #################################################################
@@ -836,10 +841,9 @@ This is a compact notation."""@en .
 
 ###  http://example.com/x98/example_B#restauration_B_step_2
 ex_B:restauration_B_step_2 rdf:type owl:NamedIndividual ,
-                                    :Filter ,
+                                    :Dynamic ,
                                     ccdm:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_B:destinationFile ;
-                           :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "2"^^xsd:int ;
                            ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
                            ccdm:productionJobName "Example of simple job B"@en ;
