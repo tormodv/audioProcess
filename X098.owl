@@ -776,6 +776,7 @@ See EBU Core/CCDM for further attributes."""@en .
 ###  http://example.com/x98/example_A#restauration_A_step_1
 ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
+                                    :ProcessEvent ,
                                     ccdm:ProductionJob ;
                            ccdm:hasInputMediaResource ex_A:sourceFile ;
                            ccdm:hasOutputMediaResource ex_A:destinationFile ;
@@ -784,7 +785,8 @@ ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
                            ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
                            ccdm:productionJobName "Example of simple job A"@en ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
-This is a compact notation."""@en .
+This is a compact notation."""@en ,
+                                        "Type :Filter will be enough, the supertypes are added for clarity."@en .
 
 
 ###  http://example.com/x98/example_A#sourceDescription
