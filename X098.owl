@@ -19,12 +19,18 @@
 @base <http://www.aes.org/ontologies/X098> .
 
 <http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
+                                      owl:imports <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore/2.3.0> ;
                                       dcterms:contributor "Kaylie Ackerman" ,
                                                           "Tormod Værvågen" ;
                                       dcterms:creator "AES SC-03-07"@en ;
                                       dcterms:title """AES X098C AES standard for metadata – 
 Process and handling history
 of audio objects"""@en ;
+                                      rdfs:comment """TODO:
+
+The workerList element shall contain a list of the names of all[?] the people who have participated in the work described in the enclosing process history instance document.
+
+Add as Agent (EBUCORE) is the description of the job enough?""" ;
                                       owl:versionInfo 0.5 ,
                                                       "The first draft of a straightforward instance of example data"@en .
 
@@ -59,7 +65,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#assuredBy
 :assuredBy rdf:type owl:ObjectProperty ;
-           rdfs:domain :ProcessEvent ;
            rdfs:range :QualityAssurance ;
            rdfs:label "assured by"@en .
 
@@ -73,29 +78,26 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#feedsSideChainInput
 :feedsSideChainInput rdf:type owl:ObjectProperty ;
-                     rdfs:domain :ProcessEvent ;
                      rdfs:range :ProcessEvent ;
                      rdfs:label "feeds side chain input"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#functionalRole
 :functionalRole rdf:type owl:ObjectProperty ;
-                rdfs:domain :Device ;
                 rdfs:range skos:Consept ;
                 dcterms:description "Using values from vfnc:Scheme"@en ;
+                rdfs:comment "Should we make a subclass of skos:Consept?"@en ;
                 rdfs:label "functional role"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDeviceParameter
 :hasDeviceParameter rdf:type owl:ObjectProperty ;
-                    rdfs:domain :DeviceChannel ;
                     rdfs:range :DeviceParameter ;
                     rdfs:label "device parameter"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasDownstreamOutput
 :hasDownstreamOutput rdf:type owl:ObjectProperty ;
-                     rdfs:domain :ProcessEvent ;
                      rdfs:range :ProcessEvent ;
                      rdfs:label "downstream output"@en .
 
@@ -109,28 +111,24 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#hasInputChannel
 :hasInputChannel rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Device ;
                  rdfs:range :DeviceChannel ;
                  rdfs:label "input channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasOutputChanel
 :hasOutputChanel rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Device ;
                  rdfs:range :DeviceChannel ;
                  rdfs:label "output channel"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasProcessEventGrupMember
 :hasProcessEventGrupMember rdf:type owl:ObjectProperty ;
-                           rdfs:domain :ProcessEvent ;
                            rdfs:range :ProcessEvent ;
                            rdfs:label "prosess event group member"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#hasTimelineFractionProsessEvent
 :hasTimelineFractionProsessEvent rdf:type owl:ObjectProperty ;
-                                 rdfs:domain :ProcessEvent ;
                                  rdfs:range :ProcessEvent ;
                                  rdfs:label "timeline fraction prosess event"@en .
 
@@ -144,8 +142,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#reformattingReference
 :reformattingReference rdf:type owl:ObjectProperty ;
-                       rdfs:domain :ProcessEvent ;
-                       rdfs:range <http://xmlns.com/foaf/0.1/Document> ;
+                       rdfs:range ec:Resource ;
                        dcterms:description "The reformattingReference element may be used to provide an link to the location of a text file containing discursive text about the preservation methodology"@en ;
                        rdfs:comment "reformatting reference"@en .
 
@@ -159,20 +156,17 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#settingsProfile
 :settingsProfile rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Device ;
                  rdfs:range ec:Resource .
 
 
 ###  http://www.aes.org/ontologies/X098#trackReference
 :trackReference rdf:type owl:ObjectProperty ;
-                rdfs:domain :ProcessEvent ;
                 rdfs:range ec:Track ;
                 rdfs:label "track reference"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#transitionType
 :transitionType rdf:type owl:ObjectProperty ;
-                rdfs:domain :ProcessEvent ;
                 rdfs:range skos:Consept ;
                 rdfs:label "transitionType"@en .
 
@@ -186,21 +180,18 @@ ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasInputMediaResource
 ccdm:hasInputMediaResource rdf:type owl:ObjectProperty ;
-                           rdfs:domain ccdm:ProductionJob ;
                            rdfs:range ec:MediaResource ;
                            rdfs:label "input media resource"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasOutputMediaResource
 ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty ;
-                            rdfs:domain ccdm:ProductionJob ;
                             rdfs:range ec:MediaResource ;
                             rdfs:label "output media resource"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasSubJob
 ccdm:hasSubJob rdf:type owl:ObjectProperty ;
-               rdfs:domain ccdm:ProductionJob ;
                rdfs:range ccdm:ProductionJob ;
                rdfs:comment """To identify a ProductionJob / process as part of a complex
       ProductionJob."""@en ;
@@ -209,11 +200,30 @@ ccdm:hasSubJob rdf:type owl:ObjectProperty ;
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
 ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
-                          rdfs:domain ccdm:ProductionJob ;
                           rdfs:range ccdm:ProductionDevice ;
                           rdfs:comment """To identify a ProductionDevice associated to a
       ProductionJob."""@en ;
                           rdfs:label "Production Device"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
+ec:endEditUnit rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
+ec:endNormalPlayTime rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
+ec:endTimecode rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
+ec:endTimecodeDropFrame rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf ec:end .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
@@ -221,6 +231,26 @@ ec:instantiates rdf:type owl:ObjectProperty ;
                 rdfs:domain ec:Resource ;
                 rdfs:range ec:EditorialObject ;
                 rdfs:label "instantiates"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
+ec:startEditUnit rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
+ec:startNormalPlayTime rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
+ec:startTimecode rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
+ec:startTimecodeDropFrame rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf ec:start .
 
 
 ###  http://www.w3.org/2004/02/skos/core#inScheme
@@ -233,14 +263,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://www.aes.org/ontologies/X098#creationDate
-:creationDate rdf:type owl:DatatypeProperty ;
-              rdfs:domain :ProcessEvent ;
-              rdfs:range xsd:dateTimeStamp ;
-              dcterms:description "The creationData element shall be used to indicate the time and date the enclosing processEvent occurred."@en ;
-              rdfs:label "creation date"@en .
-
 
 ###  http://www.aes.org/ontologies/X098#deviceChannelDescription
 :deviceChannelDescription rdf:type owl:DatatypeProperty ;
@@ -328,98 +350,96 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompAttack
 :dynamicCompAttack rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :Dynamic ;
+                   rdfs:range rdfs:Literal ;
                    rdfs:label "dynamic compression attack"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompRatio
 :dynamicCompRatio rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Dynamic ;
+                  rdfs:range rdfs:Literal ;
                   rdfs:label "dynamic compression ratio"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompRelease
 :dynamicCompRelease rdf:type owl:DatatypeProperty ;
-                    rdfs:domain :Dynamic ;
+                    rdfs:range rdfs:Literal ;
                     rdfs:label "dynamic compression release"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompTresh
 :dynamicCompTresh rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Dynamic ;
+                  rdfs:range rdfs:Literal ;
                   rdfs:label "dynamic compression treshhold"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpAttack
 :dynamicExpAttack rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Dynamic ;
+                  rdfs:range rdfs:Literal ;
                   rdfs:label "dynamic expander attack"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpRatio
 :dynamicExpRatio rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Dynamic ;
+                 rdfs:range rdfs:Literal ;
                  rdfs:label "dynamic expander ratio"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpRelease
 :dynamicExpRelease rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :Dynamic ;
+                   rdfs:range rdfs:Literal ;
                    rdfs:label "dynamic expander release"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpTresh
 :dynamicExpTresh rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Dynamic ;
+                 rdfs:range rdfs:Literal ;
                  rdfs:label "dynamic expander treshold"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicGate
 :dynamicGate rdf:type owl:DatatypeProperty ;
-             rdfs:domain :Dynamic ;
              rdfs:range xsd:boolean ;
              rdfs:label "dynamic gate?"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicGateFlor
 :dynamicGateFlor rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Dynamic ;
+                 rdfs:range rdfs:Literal ;
                  rdfs:label "dynamic gate flor"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqFreq
 :filterEqFreq rdf:type owl:DatatypeProperty ;
-              rdfs:domain :Filter ;
+              rdfs:range rdfs:Literal ;
               rdfs:label "equliser frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqGain
 :filterEqGain rdf:type owl:DatatypeProperty ;
-              rdfs:domain :Filter ;
+              rdfs:range rdfs:Literal ;
               rdfs:label "equliser gain"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqQfactor
 :filterEqQfactor rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Filter ;
+                 rdfs:range rdfs:Literal ;
                  rdfs:label "equliser q-factor"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterHighPassFreq
 :filterHighPassFreq rdf:type owl:DatatypeProperty ;
-                    rdfs:domain :Filter ;
+                    rdfs:range rdfs:Literal ;
                     rdfs:label "high pass frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterLowPassFreq
 :filterLowPassFreq rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :Filter ;
+                   rdfs:range rdfs:Literal ;
                    rdfs:label "low pass frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
 :inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
-                        rdfs:domain :ProcessEvent ;
                         rdfs:range xsd:boolean ;
                         rdfs:label "input file status deleted?"@en .
 
@@ -431,63 +451,14 @@ skos:inScheme rdf:type owl:ObjectProperty ;
                       rdfs:label "playback media channel"@en .
 
 
-###  http://www.aes.org/ontologies/X098#processEventDescription
-:processEventDescription rdf:type owl:DatatypeProperty ;
-                         rdfs:domain :ProcessEvent ;
-                         rdfs:range rdfs:Literal ;
-                         rdfs:label "process event description"@en .
-
-
-###  http://www.aes.org/ontologies/X098#processEventId
-:processEventId rdf:type owl:DatatypeProperty ;
-                rdfs:domain :ProcessEvent ;
-                rdfs:range [ rdf:type rdfs:Datatype ;
-                             owl:unionOf ( xsd:anyURI
-                                           xsd:string
-                                         )
-                           ] ;
-                rdfs:label "process event identificator"@en .
-
-
-###  http://www.aes.org/ontologies/X098#processEventName
-:processEventName rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :ProcessEvent ;
-                  rdfs:range xsd:string ;
-                  rdfs:label "process event name"@en .
-
-
-###  http://www.aes.org/ontologies/X098#processEventType
-:processEventType rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :ProcessEvent ;
-                  rdfs:range [ rdf:type rdfs:Datatype ;
-                               owl:unionOf ( xsd:anyURI
-                                             xsd:string
-                                           )
-                             ] ;
-                  rdfs:label "process event type"@en .
-
-
-###  http://www.aes.org/ontologies/X098#productionDeviceId
-:productionDeviceId rdf:type owl:DatatypeProperty ;
-                    rdfs:domain ccdm:ProductionDevice ;
-                    rdfs:range [ rdf:type rdfs:Datatype ;
-                                 owl:unionOf ( xsd:anyURI
-                                               xsd:string
-                                             )
-                               ] ;
-                    rdfs:label "production device identificator"@en .
-
-
 ###  http://www.aes.org/ontologies/X098#qualityAssuranceFail
 :qualityAssuranceFail rdf:type owl:DatatypeProperty ;
-                      rdfs:domain :QualityAssurance ;
                       rdfs:range xsd:boolean ;
                       rdfs:label "quality assurance fail?"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#qualityAssuranceNote
 :qualityAssuranceNote rdf:type owl:DatatypeProperty ;
-                      rdfs:domain :QualityAssurance ;
                       rdfs:range rdfs:Literal ;
                       dcterms:description "The note element may be used to provide discursive text regarding the specifics of the quality assurance work and its outcome."@en ;
                       rdfs:label "note"@en .
@@ -502,7 +473,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#reformattingText
 :reformattingText rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :ProcessEvent ;
                   rdfs:range rdfs:Literal ;
                   dcterms:description "The reformattingText element may be used to include discursive text about the preservation methodology directly in the processEvent."@en ;
                   rdfs:label "reformating text"@en .
@@ -510,131 +480,40 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#sequenceNum
 :sequenceNum rdf:type owl:DatatypeProperty ;
-             rdfs:domain :ProcessEvent ;
-             rdfs:range xsd:int ;
+             rdfs:range xsd:integer ;
              rdfs:label "sequence number"@en .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceDescription
-ccdm:productionDeviceDescription rdf:type owl:DatatypeProperty ;
-                                 rdfs:domain ccdm:ProductionDevice ;
-                                 rdfs:range rdfs:Literal ;
-                                 rdfs:label "production device description"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceId
-ccdm:productionDeviceId rdf:type owl:DatatypeProperty ;
-                        rdfs:domain ccdm:ProductionDevice ;
-                        rdfs:range [ rdf:type rdfs:Datatype ;
-                                     owl:unionOf ( xsd:anyURI
-                                                   xsd:string
-                                                 )
-                                   ] ;
-                        rdfs:label "production device identifier"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceName
-ccdm:productionDeviceName rdf:type owl:DatatypeProperty ;
-                          rdfs:domain ccdm:ProductionDevice ;
-                          rdfs:range xsd:string ;
-                          rdfs:label "production device name"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionDeviceType
-ccdm:productionDeviceType rdf:type owl:DatatypeProperty ;
-                          rdfs:domain ccdm:ProductionDevice ;
-                          rdfs:range [ rdf:type rdfs:Datatype ;
-                                       owl:unionOf ( xsd:anyURI
-                                                     xsd:string
-                                                   )
-                                     ] ;
-                          rdfs:label "production device type"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobDescription
-ccdm:productionJobDescription rdf:type owl:DatatypeProperty ;
-                              rdfs:domain ccdm:ProductionJob ;
-                              rdfs:range rdfs:Literal .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobId
-ccdm:productionJobId rdf:type owl:DatatypeProperty ;
-                     rdfs:domain ccdm:ProductionJob ;
-                     rdfs:range [ rdf:type rdfs:Datatype ;
-                                  owl:unionOf ( xsd:anyURI
-                                                xsd:string
-                                              )
-                                ] .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobName
-ccdm:productionJobName rdf:type owl:DatatypeProperty ;
-                       rdfs:domain ccdm:ProductionJob ;
-                       rdfs:range rdfs:Literal .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#productionJobType
-ccdm:productionJobType rdf:type owl:DatatypeProperty ;
-                       rdfs:domain ccdm:ProductionJob ;
-                       rdfs:range [ rdf:type rdfs:Datatype ;
-                                    owl:unionOf ( xsd:anyURI
-                                                  xsd:string
-                                                )
-                                  ] ;
-                       rdfs:comment "Range: string or anyURI or skos:ConceptId"@en ;
-                       rdfs:label "production job type"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
-ec:end rdf:type owl:DatatypeProperty ;
-       rdfs:domain :ProcessEvent ;
-       rdfs:range rdfs:Literal .
-
-
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
-ec:endEditUnit rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf ec:end .
+ec:endEditUnit rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
-ec:endNormalPlayTime rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf ec:end .
+ec:endNormalPlayTime rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
-ec:endTimecode rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf ec:end .
+ec:endTimecode rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
-ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty ;
-                        rdfs:subPropertyOf ec:end .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
-ec:start rdf:type owl:DatatypeProperty ;
-         rdfs:domain :ProcessEvent ;
-         rdfs:range rdfs:Literal .
+ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
-ec:startEditUnit rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf ec:start .
+ec:startEditUnit rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
-ec:startNormalPlayTime rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf ec:start .
+ec:startNormalPlayTime rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
-ec:startTimecode rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf ec:start .
+ec:startTimecode rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
-ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty ;
-                          rdfs:subPropertyOf ec:start .
+ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#notation
@@ -654,7 +533,24 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#Device
 :Device rdf:type owl:Class ;
-        rdfs:subClassOf ccdm:ProductionDevice ;
+        rdfs:subClassOf ccdm:ProductionDevice ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :functionalRole ;
+                          owl:allValuesFrom skos:Consept
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasInputChannel ;
+                          owl:allValuesFrom :DeviceChannel
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasOutputChanel ;
+                          owl:allValuesFrom :DeviceChannel
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :settingsProfile ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass ec:Resource
+                        ] ;
         dcterms:description "The device element shall be used to describe the setup and characteristics of a single device in the signal graph."@en ;
         rdfs:label "Device"@en .
 
@@ -664,8 +560,7 @@ skos:notation rdf:type owl:DatatypeProperty ;
                rdfs:subClassOf :ChannelType ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasDeviceParameter ;
-                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :DeviceParameter
+                                 owl:someValuesFrom :DeviceParameter
                                ] ;
                dcterms:description "The DeviceChanel is an abstract class that serves as a base  for DeviceInputChanel and DeviceOutputChannel."@en ;
                rdfs:label "Device Channel"@en .
@@ -693,7 +588,48 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#Dynamic
 :Dynamic rdf:type owl:Class ;
-         rdfs:subClassOf :ProcessEvent ;
+         rdfs:subClassOf :ProcessEvent ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompAttack ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompRatio ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompRelease ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompTresh ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpAttack ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpRatio ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpRelease ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpTresh ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicGate ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:boolean
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicGateFlor ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
          owl:disjointWith :Filter ,
                           :QualityAssurance ;
          dcterms:description "Parameters for dynamic process events"@en ;
@@ -702,7 +638,27 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#Filter
 :Filter rdf:type owl:Class ;
-        rdfs:subClassOf :ProcessEvent ;
+        rdfs:subClassOf :ProcessEvent ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqFreq ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqGain ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqQfactor ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterHighPassFreq ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterLowPassFreq ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ;
         owl:disjointWith :QualityAssurance ;
         dcterms:description "Parameters for filter process events"@en ;
         rdfs:label "Filter"@en .
@@ -712,28 +668,85 @@ skos:notation rdf:type owl:DatatypeProperty ;
 :ProcessEvent rdf:type owl:Class ;
               rdfs:subClassOf ccdm:ProductionJob ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :creationDate ;
-                                owl:someValuesFrom xsd:dateTime
+                                owl:onProperty :assuredBy ;
+                                owl:allValuesFrom :QualityAssurance
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :feedsSideChainInput ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDownstreamOutput ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasProcessEventGrupMember ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTimelineFractionProsessEvent ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :reformattingReference ;
+                                owl:allValuesFrom ec:Resource
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :trackReference ;
+                                owl:allValuesFrom ec:Track
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :transitionType ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass skos:Concept
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:dateCreated ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass <http://www.w3.org/2006/time#Instant>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:end ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:start ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :reformattingText ;
+                                owl:allValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :inputFileStatusDeleted ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:boolean
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :sequenceNum ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:integer
                               ] ;
               dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
 
 NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
               rdfs:label "Process event"@en .
 
-[ rdf:type owl:Axiom ;
-   owl:annotatedSource :ProcessEvent ;
-   owl:annotatedProperty rdfs:subClassOf ;
-   owl:annotatedTarget [ rdf:type owl:Restriction ;
-                         owl:onProperty :creationDate ;
-                         owl:someValuesFrom xsd:dateTime
-                       ] ;
-   dcterms:description "The creationDate property shall be used to indicate the time and date the enclosing qualityAssurance event occurred."@en
- ] .
-
 
 ###  http://www.aes.org/ontologies/X098#QualityAssurance
 :QualityAssurance rdf:type owl:Class ;
-                  rdfs:subClassOf :ProcessEvent ;
+                  rdfs:subClassOf :ProcessEvent ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :qualityAssuranceFail ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:boolean
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :qualityAssuranceNote ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ;
                   rdfs:label "Quality assurance"@en .
 
 
@@ -817,8 +830,6 @@ ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
                            ccdm:hasOutputMediaResource ex_A:destinationFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
-                           ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
-                           ccdm:productionJobName "Example of simple job A"@en ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en ,
                                         "Type :Filter will be enough, the supertypes are added for clarity."@en .
@@ -862,8 +873,6 @@ ex_B:restauration_B_step_1 rdf:type owl:NamedIndividual ,
                            ccdm:hasInputMediaResource ex_B:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
-                           ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
-                           ccdm:productionJobName "Example of simple job B"@en ;
                            rdfs:comment "*** Add proper subjobs here ***"@en ,
                                         """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
@@ -875,8 +884,6 @@ ex_B:restauration_B_step_2 rdf:type owl:NamedIndividual ,
                                     ccdm:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_B:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
-                           ccdm:productionJobDescription "This job is descriped just by its prosessing not the equipment used."@en ;
-                           ccdm:productionJobName "Example of simple job B"@en ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
 
