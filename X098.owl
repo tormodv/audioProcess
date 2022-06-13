@@ -69,13 +69,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
            rdfs:label "assured by"@en .
 
 
-###  http://www.aes.org/ontologies/X098#deviceParameterType
-:deviceParameterType rdf:type owl:ObjectProperty ;
-                     rdfs:domain :DeviceChannel ;
-                     rdfs:range skos:Consept ;
-                     rdfs:label "device parameter type"@en .
-
-
 ###  http://www.aes.org/ontologies/X098#feedsSideChainInput
 :feedsSideChainInput rdf:type owl:ObjectProperty ;
                      rdfs:range :ProcessEvent ;
@@ -104,7 +97,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#hasDownstreamOutputChannel
 :hasDownstreamOutputChannel rdf:type owl:ObjectProperty ;
-                            rdfs:domain :DeviceChannel ;
                             rdfs:range :DeviceChannel ;
                             rdfs:label "downstream output channel"@en .
 
@@ -135,7 +127,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#interfaceType
 :interfaceType rdf:type owl:ObjectProperty ;
-               rdfs:domain :DeviceChannel ;
                rdfs:range skos:Consept ;
                rdfs:label "interface type" .
 
@@ -149,7 +140,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#sendsToBus
 :sendsToBus rdf:type owl:ObjectProperty ;
-            rdfs:domain :DeviceParameter ;
             rdfs:range :DeviceChannel ;
             rdfs:label "sends to bus"@en .
 
@@ -264,60 +254,10 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
-###  http://www.aes.org/ontologies/X098#deviceChannelDescription
-:deviceChannelDescription rdf:type owl:DatatypeProperty ;
-                          rdfs:domain :DeviceChannel ;
-                          rdfs:range rdfs:Literal ;
-                          rdfs:label "device channel description"@en .
-
-
-###  http://www.aes.org/ontologies/X098#deviceChannelId
-:deviceChannelId rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :DeviceChannel ;
-                 rdfs:range [ rdf:type rdfs:Datatype ;
-                              owl:unionOf ( xsd:anyURI
-                                            xsd:string
-                                          )
-                            ] ;
-                 rdfs:label "device channel identificator"@en .
-
-
-###  http://www.aes.org/ontologies/X098#deviceChannelName
-:deviceChannelName rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :DeviceChannel ;
-                   rdfs:range xsd:string ;
-                   rdfs:label "device channel name"@en .
-
-
-###  http://www.aes.org/ontologies/X098#deviceParameterDescription
-:deviceParameterDescription rdf:type owl:DatatypeProperty ;
-                            rdfs:domain :DeviceParameter ;
-                            rdfs:range rdfs:Literal ;
-                            rdfs:label "device parameter description"@en .
-
-
-###  http://www.aes.org/ontologies/X098#deviceParameterId
-:deviceParameterId rdf:type owl:DatatypeProperty ;
-                   rdfs:domain :DeviceParameter ;
-                   rdfs:range [ rdf:type rdfs:Datatype ;
-                                owl:unionOf ( xsd:anyURI
-                                              xsd:string
-                                            )
-                              ] ;
-                   rdfs:label "device parameter identificator"@en .
-
-
 ###  http://www.aes.org/ontologies/X098#deviceParameterInterfacePrecision
 :deviceParameterInterfacePrecision rdf:type owl:DatatypeProperty ;
                                    rdfs:domain :DeviceParameter ;
                                    rdfs:comment "device parameter interface precision"@en .
-
-
-###  http://www.aes.org/ontologies/X098#deviceParameterName
-:deviceParameterName rdf:type owl:DatatypeProperty ;
-                     rdfs:domain :DeviceParameter ;
-                     rdfs:range xsd:string ;
-                     rdfs:label "device parameter name"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterPresetName
@@ -446,7 +386,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#playbackMediaChannel
 :playbackMediaChannel rdf:type owl:DatatypeProperty ;
-                      rdfs:domain :DeviceChannel ;
                       rdfs:comment "Check range! ***"@en ;
                       rdfs:label "playback media channel"@en .
 
@@ -466,7 +405,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#recordMediaChannel
 :recordMediaChannel rdf:type owl:DatatypeProperty ;
-                    rdfs:domain :DeviceChannel ;
                     rdfs:comment "Check range! ***"@en ;
                     rdfs:label "record media channel"@en .
 
@@ -527,7 +465,22 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#ChannelType
 :ChannelType rdf:type owl:Class ;
-             rdfs:comment "***opt***"@en ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:hasIdentifier ;
+                               owl:allValuesFrom ec:Identifier
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:objectType ;
+                               owl:allValuesFrom skos:Concept
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:description ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:name ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ;
              rdfs:label "Channel type"@en .
 
 
@@ -561,6 +514,25 @@ skos:notation rdf:type owl:DatatypeProperty ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasDeviceParameter ;
                                  owl:someValuesFrom :DeviceParameter
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasDownstreamOutputChannel ;
+                                 owl:allValuesFrom :DeviceChannel
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :interfaceType ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass skos:Concept
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :playbackMediaChannel ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:boolean
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :recordMediaChannel ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:boolean
                                ] ;
                dcterms:description "The DeviceChanel is an abstract class that serves as a base  for DeviceInputChanel and DeviceOutputChannel."@en ;
                rdfs:label "Device Channel"@en .
@@ -583,6 +555,26 @@ skos:notation rdf:type owl:DatatypeProperty ;
 
 ###  http://www.aes.org/ontologies/X098#DeviceParameter
 :DeviceParameter rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :sendsToBus ;
+                                   owl:allValuesFrom :DeviceChannel
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:hasIdentifier ;
+                                   owl:allValuesFrom ec:Identifier
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:objectType ;
+                                   owl:allValuesFrom skos:Concept
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:description ;
+                                   owl:allValuesFrom rdfs:Literal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:name ;
+                                   owl:allValuesFrom rdfs:Literal
+                                 ] ;
                  rdfs:label "Device parameter"@en .
 
 
