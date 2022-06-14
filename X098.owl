@@ -256,34 +256,31 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterInterfacePrecision
 :deviceParameterInterfacePrecision rdf:type owl:DatatypeProperty ;
-                                   rdfs:domain :DeviceParameter ;
+                                   rdfs:range rdfs:Literal ;
                                    rdfs:comment "device parameter interface precision"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterPresetName
 :deviceParameterPresetName rdf:type owl:DatatypeProperty ;
-                           rdfs:domain :DeviceParameter ;
-                           rdfs:range xsd:string ;
+                           rdfs:range rdfs:Literal ;
                            rdfs:label "device parameter preset name"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterProgramName
 :deviceParameterProgramName rdf:type owl:DatatypeProperty ;
-                            rdfs:domain :DeviceParameter ;
-                            rdfs:range xsd:string ;
+                            rdfs:range rdfs:Literal ;
                             rdfs:label "device parameter program name"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterUnit
 :deviceParameterUnit rdf:type owl:DatatypeProperty ;
-                     rdfs:domain :DeviceParameter ;
+                     rdfs:range rdfs:Literal ;
                      rdfs:comment "Better with skos:Consept as range? ***"@en ;
                      rdfs:label "device parameter unit"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterValue
 :deviceParameterValue rdf:type owl:DatatypeProperty ;
-                      rdfs:domain :DeviceParameter ;
                       rdfs:range rdfs:Literal ;
                       rdfs:label "device parameter value"@en .
 
@@ -574,6 +571,26 @@ skos:notation rdf:type owl:DatatypeProperty ;
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty ec:name ;
                                    owl:allValuesFrom rdfs:Literal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterInterfacePrecision ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterPresetName ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterProgramName ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterUnit ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterValue ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                  ] ;
                  rdfs:label "Device parameter"@en .
 
