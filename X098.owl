@@ -30,7 +30,9 @@ of audio objects"""@en ;
 
 The workerList element shall contain a list of the names of all[?] the people who have participated in the work described in the enclosing process history instance document.
 
-Add as Agent (EBUCORE) is the description of the job enough?""" ;
+Add as Agent (EBUCORE) is the description of the job enough?
+
+Add staert end transition for parameter""" ;
                                       owl:versionInfo 0.5 ,
                                                       "The first draft of a straightforward instance of example data"@en .
 
@@ -563,6 +565,21 @@ skos:notation rdf:type owl:DatatypeProperty ;
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty ec:objectType ;
                                    owl:allValuesFrom skos:Concept
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :transitionType ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass skos:Concept
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:end ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:start ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty ec:description ;
