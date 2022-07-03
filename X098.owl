@@ -157,6 +157,13 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
                 rdfs:label "track reference"@en .
 
 
+###  http://www.aes.org/ontologies/X098#transitionDuration
+:transitionDuration rdf:type owl:ObjectProperty ;
+                    rdfs:range ec:TimelinePoint ;
+                    dcterms:description "The duration of the transition to the following setting"@en ;
+                    rdfs:label "transition duration"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#transitionType
 :transitionType rdf:type owl:ObjectProperty ;
                 rdfs:range skos:Consept ;
@@ -567,6 +574,11 @@ skos:notation rdf:type owl:DatatypeProperty ;
                                    owl:allValuesFrom skos:Concept
                                  ] ,
                                  [ rdf:type owl:Restriction ;
+                                   owl:onProperty :transitionDuration ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :transitionType ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onClass skos:Concept
@@ -720,6 +732,11 @@ skos:notation rdf:type owl:DatatypeProperty ;
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :trackReference ;
                                 owl:allValuesFrom ec:Track
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :transitionDuration ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :transitionType ;
