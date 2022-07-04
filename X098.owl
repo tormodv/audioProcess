@@ -911,6 +911,7 @@ See EBU Core/CCDM for further attributes."""@en .
 ###  http://example.com/x98/example_B#restauration_B_step_1
 ex_B:restauration_B_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
+                                    :ProcessEvent ,
                                     ccdm:ProductionJob ;
                            :hasDownstreamOutput ex_B:restauration_B_step_2 ;
                            ccdm:hasInputMediaResource ex_B:sourceFile ;
@@ -934,6 +935,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_B#sourceDescription
 ex_B:sourceDescription rdf:type owl:NamedIndividual ,
                                 ec:EditorialObject ;
+                       ec:isInstantiatedBy ex_B:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
 
 
