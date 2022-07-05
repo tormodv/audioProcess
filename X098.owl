@@ -314,86 +314,97 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompAttack
 :dynamicCompAttack rdf:type owl:DatatypeProperty ;
-                   rdfs:range rdfs:Literal ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Attack time in seconds"@en ;
                    rdfs:label "dynamic compression attack"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompRelease
 :dynamicCompRelease rdf:type owl:DatatypeProperty ;
-                    rdfs:range rdfs:Literal ;
+                    rdfs:range xsd:decimal ;
+                    dcterms:description "Release time in seconds"@en ;
                     rdfs:label "dynamic compression release"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicCompTresh
 :dynamicCompTresh rdf:type owl:DatatypeProperty ;
-                  rdfs:range rdfs:Literal ;
-                  rdfs:label "dynamic compression treshhold"@en .
+                  rdfs:range xsd:decimal ;
+                  dcterms:description "Threshold in dBu"@en ;
+                  rdfs:label "dynamic compression threshold"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpAttack
 :dynamicExpAttack rdf:type owl:DatatypeProperty ;
-                  rdfs:range rdfs:Literal ;
+                  rdfs:range xsd:decimal ;
+                  dcterms:description "Attack time in seconds"@en ;
                   rdfs:label "dynamic expander attack"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpRelease
 :dynamicExpRelease rdf:type owl:DatatypeProperty ;
-                   rdfs:range rdfs:Literal ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Release time in seconds"@en ;
                    rdfs:label "dynamic expander release"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpTresh
 :dynamicExpTresh rdf:type owl:DatatypeProperty ;
-                 rdfs:range rdfs:Literal ;
+                 rdfs:range xsd:decimal ;
+                 dcterms:description "Threshold in dBu"@en ;
                  rdfs:label "dynamic expander treshold"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicGate
 :dynamicGate rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:boolean ;
-             rdfs:label "dynamic gate?"@en .
+             rdfs:label "dynamic gate flag"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicGateFlor
 :dynamicGateFlor rdf:type owl:DatatypeProperty ;
-                 rdfs:range rdfs:Literal ;
+                 rdfs:range xsd:decimal ;
+                 dcterms:description "Threshold in dBu"@en ;
                  rdfs:label "dynamic gate flor"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqFreq
 :filterEqFreq rdf:type owl:DatatypeProperty ;
-              rdfs:range rdfs:Literal ;
-              rdfs:label "equliser frequency"@en .
+              rdfs:range xsd:decimal ;
+              dcterms:description "Equaliser frequency in Hz"@en ;
+              rdfs:label "equaliser frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqGain
 :filterEqGain rdf:type owl:DatatypeProperty ;
-              rdfs:range rdfs:Literal ;
+              rdfs:range xsd:decimal ;
+              dcterms:description "Gain in dBu"@en ;
               rdfs:label "equliser gain"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterEqQfactor
 :filterEqQfactor rdf:type owl:DatatypeProperty ;
-                 rdfs:range rdfs:Literal ;
+                 rdfs:range xsd:decimal ;
                  rdfs:label "equliser q-factor"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterHighPassFreq
 :filterHighPassFreq rdf:type owl:DatatypeProperty ;
-                    rdfs:range rdfs:Literal ;
+                    rdfs:range xsd:decimal ;
+                    dcterms:description "High pass frequency in Hz"@en ;
                     rdfs:label "high pass frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#filterLowPassFreq
 :filterLowPassFreq rdf:type owl:DatatypeProperty ;
-                   rdfs:range rdfs:Literal ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Low pass frequency in Hz"@en ;
                    rdfs:label "low pass frequency"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
 :inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:boolean ;
-                        rdfs:label "input file status deleted?"@en .
+                        rdfs:label "input file status deleted flag"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#numerator
@@ -651,27 +662,33 @@ skos:notation rdf:type owl:DatatypeProperty ;
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicCompAttack ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicCompRelease ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicCompTresh ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicExpAttack ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicExpRelease ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicExpTresh ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicGate ;
@@ -693,23 +710,28 @@ skos:notation rdf:type owl:DatatypeProperty ;
         rdfs:subClassOf :ProcessEvent ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :filterEqFreq ;
-                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :filterEqGain ;
-                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :filterEqQfactor ;
-                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :filterHighPassFreq ;
-                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :filterLowPassFreq ;
-                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
                         ] ;
         owl:disjointWith :QualityAssurance ;
         dcterms:description "Parameters for filter process events"@en ;
