@@ -71,6 +71,18 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
            rdfs:label "assured by"@en .
 
 
+###  http://www.aes.org/ontologies/X098#dynamicCompRatio
+:dynamicCompRatio rdf:type owl:ObjectProperty ;
+                  rdfs:range :Ratio ;
+                  rdfs:label "dynamic compression ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpRatio
+:dynamicExpRatio rdf:type owl:ObjectProperty ;
+                 rdfs:range :Ratio ;
+                 rdfs:label "dynamic expander ratio"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#feedsSideChainInput
 :feedsSideChainInput rdf:type owl:ObjectProperty ;
                      rdfs:range :ProcessEvent ;
@@ -263,6 +275,12 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://www.aes.org/ontologies/X098#denominator
+:denominator rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:integer ;
+             rdfs:label "denominator"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#deviceParameterInterfacePrecision
 :deviceParameterInterfacePrecision rdf:type owl:DatatypeProperty ;
                                    rdfs:range rdfs:Literal ;
@@ -300,12 +318,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
                    rdfs:label "dynamic compression attack"@en .
 
 
-###  http://www.aes.org/ontologies/X098#dynamicCompRatio
-:dynamicCompRatio rdf:type owl:DatatypeProperty ;
-                  rdfs:range rdfs:Literal ;
-                  rdfs:label "dynamic compression ratio"@en .
-
-
 ###  http://www.aes.org/ontologies/X098#dynamicCompRelease
 :dynamicCompRelease rdf:type owl:DatatypeProperty ;
                     rdfs:range rdfs:Literal ;
@@ -322,12 +334,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 :dynamicExpAttack rdf:type owl:DatatypeProperty ;
                   rdfs:range rdfs:Literal ;
                   rdfs:label "dynamic expander attack"@en .
-
-
-###  http://www.aes.org/ontologies/X098#dynamicExpRatio
-:dynamicExpRatio rdf:type owl:DatatypeProperty ;
-                 rdfs:range rdfs:Literal ;
-                 rdfs:label "dynamic expander ratio"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#dynamicExpRelease
@@ -388,6 +394,12 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 :inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
                         rdfs:range xsd:boolean ;
                         rdfs:label "input file status deleted?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#numerator
+:numerator rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:integer ;
+           rdfs:label "numerator"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#playbackMediaChannel
@@ -628,11 +640,17 @@ skos:notation rdf:type owl:DatatypeProperty ;
 :Dynamic rdf:type owl:Class ;
          rdfs:subClassOf :ProcessEvent ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty :dynamicCompAttack ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           owl:onProperty :dynamicCompRatio ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Ratio
                          ] ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty :dynamicCompRatio ;
+                           owl:onProperty :dynamicExpRatio ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Ratio
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompAttack ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
@@ -645,10 +663,6 @@ skos:notation rdf:type owl:DatatypeProperty ;
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :dynamicExpAttack ;
-                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :dynamicExpRatio ;
                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
@@ -791,6 +805,22 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                   ] ;
                   rdfs:label "Quality assurance"@en .
+
+
+###  http://www.aes.org/ontologies/X098#Ratio
+:Ratio rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :denominator ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :numerator ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ;
+       dcterms:description "Datatype for describing ratios."@en ;
+       rdfs:comment "Ratio"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
