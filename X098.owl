@@ -811,6 +811,7 @@ skos:notation rdf:type owl:DatatypeProperty ;
               dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
 
 NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
+              rdfs:comment "What about a stereofile prosessed as M/S ***"@en ;
               rdfs:label "Process event"@en .
 
 
