@@ -115,6 +115,16 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
                             rdfs:label "downstream output channel"@en .
 
 
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutputMid
+:hasDownstreamOutputMid rdf:type owl:ObjectProperty ;
+                        rdfs:label "has downstream output mid-signal"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutputSide
+:hasDownstreamOutputSide rdf:type owl:ObjectProperty ;
+                         rdfs:label "has downstream output side-signal"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#hasInputChannel
 :hasInputChannel rdf:type owl:ObjectProperty ;
                  rdfs:range :DeviceChannel ;
@@ -738,6 +748,12 @@ skos:notation rdf:type owl:DatatypeProperty ;
         rdfs:label "Filter"@en .
 
 
+###  http://www.aes.org/ontologies/X098#MidSideToStereo
+:MidSideToStereo rdf:type owl:Class ;
+                 rdfs:subClassOf :ProcessEvent ;
+                 rdfs:label "Mid side to stereo transformer"@en .
+
+
 ###  http://www.aes.org/ontologies/X098#ProcessEvent
 :ProcessEvent rdf:type owl:Class ;
               rdfs:subClassOf ccdm:ProductionJob ,
@@ -844,6 +860,20 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                        ] ;
        dcterms:description "Datatype for describing ratios."@en ;
        rdfs:comment "Ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#StereoToMidSide
+:StereoToMidSide rdf:type owl:Class ;
+                 rdfs:subClassOf :ProcessEvent ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDownstreamOutputMid ;
+                                   owl:allValuesFrom :ProcessEvent
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDownstreamOutputSide ;
+                                   owl:allValuesFrom :ProcessEvent
+                                 ] ;
+                 rdfs:label "Stereo to Mid Side transformer"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
