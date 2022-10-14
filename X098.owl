@@ -28,12 +28,9 @@ Process and handling history
 of audio objects"""@en ;
                                       rdfs:comment """TODO:
 
-The workerList element shall contain a list of the names of all[?] the people who have participated in the work described in the enclosing process history instance document.
-
-Add as Agent (EBUCORE) is the description of the job enough?
-
-Add staert end transition for parameter""" ;
-                                      owl:versionInfo 0.5 ,
+The workerList element shall be expressed as a set of ec:hasContributor pointing to an instance of the Role class.""" ;
+                                      owl:versionInfo 0.6 ,
+                                                      "Suport for Stereofiles, prosessed as MS-signal"@en ,
                                                       "The first draft of a straightforward instance of example data"@en .
 
 #################################################################
@@ -93,7 +90,6 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 :functionalRole rdf:type owl:ObjectProperty ;
                 rdfs:range skos:Consept ;
                 dcterms:description "Using values from vfnc:Scheme"@en ;
-                rdfs:comment "Should we make a subclass of skos:Consept?"@en ;
                 rdfs:label "functional role"@en .
 
 
@@ -159,7 +155,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 :reformattingReference rdf:type owl:ObjectProperty ;
                        rdfs:range ec:Resource ;
                        dcterms:description "The reformattingReference element may be used to provide an link to the location of a text file containing discursive text about the preservation methodology"@en ;
-                       rdfs:comment "reformatting reference"@en .
+                       rdfs:label "reformatting reference"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#sendsToBus
@@ -193,38 +189,23 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasAssociatedProductionJob
-ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty ;
-                                rdfs:domain ec:EditorialObject ;
-                                rdfs:range ccdm:ProductionJob ;
-                                rdfs:comment "Production job"@en .
+ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasInputMediaResource
-ccdm:hasInputMediaResource rdf:type owl:ObjectProperty ;
-                           rdfs:range ec:MediaResource ;
-                           rdfs:label "input media resource"@en .
+ccdm:hasInputMediaResource rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasOutputMediaResource
-ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty ;
-                            rdfs:range ec:MediaResource ;
-                            rdfs:label "output media resource"@en .
+ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasSubJob
-ccdm:hasSubJob rdf:type owl:ObjectProperty ;
-               rdfs:range ccdm:ProductionJob ;
-               rdfs:comment """To identify a ProductionJob / process as part of a complex
-      ProductionJob."""@en ;
-               rdfs:label "Production job"@en .
+ccdm:hasSubJob rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
-ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
-                          rdfs:range ccdm:ProductionDevice ;
-                          rdfs:comment """To identify a ProductionDevice associated to a
-      ProductionJob."""@en ;
-                          rdfs:label "Production Device"@en .
+ccdm:usesProductionDevice rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#dateCreated
@@ -261,8 +242,6 @@ ec:hasIdentifier rdf:type owl:ObjectProperty .
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
 ec:instantiates rdf:type owl:ObjectProperty ;
-                rdfs:domain ec:Resource ;
-                rdfs:range ec:EditorialObject ;
                 rdfs:label "instantiates"@en .
 
 
@@ -301,7 +280,6 @@ ec:startTimecodeDropFrame rdf:type owl:ObjectProperty ;
 ###  http://www.w3.org/2004/02/skos/core#inScheme
 skos:inScheme rdf:type owl:ObjectProperty ;
               rdfs:domain skos:Consept ;
-              rdfs:range skos:ConceptScheme ;
               rdfs:label "in scheme"@en .
 
 
@@ -318,7 +296,7 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 ###  http://www.aes.org/ontologies/X098#deviceParameterInterfacePrecision
 :deviceParameterInterfacePrecision rdf:type owl:DatatypeProperty ;
                                    rdfs:range rdfs:Literal ;
-                                   rdfs:comment "device parameter interface precision"@en .
+                                   rdfs:label "device parameter interface precision"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#deviceParameterPresetName
@@ -860,7 +838,6 @@ skos:notation rdf:type owl:DatatypeProperty ;
               dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
 
 NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
-              rdfs:comment "What about a stereofile prosessed as M/S ***"@en ;
               rdfs:label "Process event"@en .
 
 
@@ -891,8 +868,8 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                          owl:onDataRange xsd:integer
                        ] ;
-       dcterms:description "Datatype for describing ratios."@en ;
-       rdfs:comment "Ratio"@en .
+       dcterms:description "Concept for describing ratios."@en ;
+       rdfs:label "Ratio"@en .
 
 
 ###  http://www.aes.org/ontologies/X098#StereoToMidSide
@@ -911,18 +888,11 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
-ccdm:ProductionDevice rdf:type owl:Class ;
-                      rdfs:comment """A Device used for creating/processing a
-      MediaResource."""@en ;
-                      rdfs:label "Production device"@en .
+ccdm:ProductionDevice rdf:type owl:Class .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionJob
-ccdm:ProductionJob rdf:type owl:Class ;
-                   rdfs:comment """A job / process to be performed to
-      manipulate/create/modify/store/etc. MediaResources and Essences as defined in an associated
-      EditorialObject. It is ordered by Contract."""@en ;
-                   rdfs:label "Production Job"@en .
+ccdm:ProductionJob rdf:type owl:Class .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#EditorialObject
@@ -941,8 +911,7 @@ ec:MediaResource rdf:type owl:Class ;
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Resource
-ec:Resource rdf:type owl:Class ;
-            rdfs:label "Resource" .
+ec:Resource rdf:type owl:Class .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#TimelinePoint
@@ -959,23 +928,15 @@ skos:Concept rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
-skos:ConceptScheme rdf:type owl:Class ;
-                   rdfs:label "Concept scheme"@en .
+skos:ConceptScheme rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Consept
-skos:Consept rdf:type owl:Class ;
-             rdfs:label "Consept"@en .
+skos:Consept rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#Instant
 <http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
-
-
-###  http://xmlns.com/foaf/0.1/Document
-<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class ;
-                                     dcterms:description "Document"@en ,
-                                                         "The Document class represents those things which are, broadly conceived, 'documents'."@en .
 
 
 #################################################################
