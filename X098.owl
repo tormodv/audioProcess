@@ -227,6 +227,14 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty ;
                           rdfs:label "Production Device"@en .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#dateCreated
+ec:dateCreated rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
+ec:end rdf:type owl:ObjectProperty .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
 ec:endEditUnit rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf ec:end .
@@ -247,11 +255,27 @@ ec:endTimecodeDropFrame rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf ec:end .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasIdentifier
+ec:hasIdentifier rdf:type owl:ObjectProperty .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
 ec:instantiates rdf:type owl:ObjectProperty ;
                 rdfs:domain ec:Resource ;
                 rdfs:range ec:EditorialObject ;
                 rdfs:label "instantiates"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#isInstantiatedBy
+ec:isInstantiatedBy rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#objectType
+ec:objectType rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
+ec:start rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
@@ -461,6 +485,10 @@ skos:inScheme rdf:type owl:ObjectProperty ;
              rdfs:label "sequence number"@en .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#description
+ec:description rdf:type owl:DatatypeProperty .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
 ec:endEditUnit rdf:type owl:DatatypeProperty .
 
@@ -475,6 +503,10 @@ ec:endTimecode rdf:type owl:DatatypeProperty .
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
 ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#name
+ec:name rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
@@ -751,6 +783,7 @@ skos:notation rdf:type owl:DatatypeProperty ;
 ###  http://www.aes.org/ontologies/X098#MidSideToStereo
 :MidSideToStereo rdf:type owl:Class ;
                  rdfs:subClassOf :ProcessEvent ;
+                 dcterms:description "A logical step for further downstream processing of a mid/side signal as a regular left/right stereo signal."@en ;
                  rdfs:label "Mid side to stereo transformer"@en .
 
 
@@ -873,6 +906,7 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                                    owl:onProperty :hasDownstreamOutputSide ;
                                    owl:allValuesFrom :ProcessEvent
                                  ] ;
+                 dcterms:description "A logical step for further downstream processing of a stereo-signal as separate mid/side processing."@en ;
                  rdfs:label "Stereo to Mid Side transformer"@en .
 
 
@@ -896,6 +930,10 @@ ec:EditorialObject rdf:type owl:Class ;
                    rdfs:label "Editorial object"@en .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Identifier
+ec:Identifier rdf:type owl:Class .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
 ec:MediaResource rdf:type owl:Class ;
                  rdfs:subClassOf ec:Resource ;
@@ -907,9 +945,17 @@ ec:Resource rdf:type owl:Class ;
             rdfs:label "Resource" .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#TimelinePoint
+ec:TimelinePoint rdf:type owl:Class .
+
+
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Track
 ec:Track rdf:type owl:Class ;
          rdfs:label "Track"@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2004/02/skos/core#ConceptScheme
@@ -920,6 +966,10 @@ skos:ConceptScheme rdf:type owl:Class ;
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class ;
              rdfs:label "Consept"@en .
+
+
+###  http://www.w3.org/2006/time#Instant
+<http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
 
 
 ###  http://xmlns.com/foaf/0.1/Document
