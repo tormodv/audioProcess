@@ -504,8 +504,7 @@ ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#notation
-skos:notation rdf:type owl:DatatypeProperty ;
-              rdfs:label "natation"@en .
+skos:notation rdf:type owl:DatatypeProperty .
 
 
 #################################################################
@@ -896,8 +895,7 @@ ccdm:ProductionJob rdf:type owl:Class .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#EditorialObject
-ec:EditorialObject rdf:type owl:Class ;
-                   rdfs:label "Editorial object"@en .
+ec:EditorialObject rdf:type owl:Class .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Identifier
@@ -947,8 +945,18 @@ skos:Consept rdf:type owl:Class .
 ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
                                     ec:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
+                           ec:dateCreated ex_A:time_oct16_2022 ;
+                           ec:hasCreator ex_A:eng_se ;
+                           ec:title "Restauration job example A"@en ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
 This example will not cover this in details, the properties you need will be covered by EBU CCDM and/or EBU"""@en .
+
+
+###  http://example.com/x98/example_A#agentTormodV
+ex_A:agentTormodV rdf:type owl:NamedIndividual ,
+                           ec:Person ;
+                  ec:familyName "Værvågen"@en ;
+                  ec:givenName "Tormod"@en .
 
 
 ###  http://example.com/x98/example_A#destinationFile
@@ -956,6 +964,13 @@ ex_A:destinationFile rdf:type owl:NamedIndividual ,
                               ec:MediaResource ;
                      rdfs:comment """Generic destination file. 
 See EBU Core/CCDM for further attributes."""@en .
+
+
+###  http://example.com/x98/example_A#eng_se
+ex_A:eng_se rdf:type owl:NamedIndividual ,
+                     ec:Role ;
+            ec:hasAgent ex_A:agentTormodV ;
+            ec:objectType ex_A:soundEng .
 
 
 ###  http://example.com/x98/example_A#restauration_A_step_1
@@ -972,6 +987,12 @@ This is a compact notation."""@en ,
                                         "Type :Filter will be enough, the supertypes are added for clarity."@en .
 
 
+###  http://example.com/x98/example_A#soundEng
+ex_A:soundEng rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              skos:prefLabel "Sound engineer"@en .
+
+
 ###  http://example.com/x98/example_A#sourceDescription
 ex_A:sourceDescription rdf:type owl:NamedIndividual ,
                                 ec:EditorialObject ;
@@ -982,8 +1003,15 @@ ex_A:sourceDescription rdf:type owl:NamedIndividual ,
 ex_A:sourceFile rdf:type owl:NamedIndividual ,
                          ec:MediaResource ;
                 ec:instantiates ex_A:sourceDescription ;
-                rdfs:comment """Some generic source file for the audio.
-Se EBU Core/CCDM for usage."""@en .
+                rdfs:comment """Some generic audio source file.
+See EBU Core+ for usage."""@en .
+
+
+###  http://example.com/x98/example_A#time_oct16_2022
+ex_A:time_oct16_2022 rdf:type owl:NamedIndividual ,
+                              <http://www.w3.org/2006/time#Instant> ;
+                     <http://www.w3.org/2006/time#hasTRS> <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
+                     <http://www.w3.org/2006/time#inXSDDateTimeStamp> "2022-10-16T14:59:32Z"^^xsd:dateTimeStamp .
 
 
 ###  http://example.com/x98/example_B#RestaurationProject_A
