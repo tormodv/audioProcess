@@ -17,6 +17,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix vfnc: <http://www.aes.org/ontologies/X098/vocabulary/functional#> .
+@prefix ecplus: <http://www.ebu.ch/metadata/ontologies/ebucoreplus#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://www.aes.org/ontologies/X098> .
 
