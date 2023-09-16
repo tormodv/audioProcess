@@ -203,7 +203,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#trackReference
 :trackReference rdf:type owl:ObjectProperty ;
-                rdfs:range ec:Track ;
+                rdfs:range ecplus:Track ;
                 rdfs:label "track reference"@en .
 
 
@@ -546,19 +546,19 @@ skos:notation rdf:type owl:DatatypeProperty .
 ###  http://www.aes.org/ontologies/X098#ChannelType
 :ChannelType rdf:type owl:Class ;
              rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty ec:hasIdentifier ;
-                               owl:allValuesFrom ec:Identifier
+                               owl:onProperty ecplus:hasIdentifier ;
+                               owl:allValuesFrom ecplus:Identifier
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty ec:objectType ;
+                               owl:onProperty ecplus:objectType ;
                                owl:allValuesFrom skos:Concept
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty ec:description ;
+                               owl:onProperty ecplus:description ;
                                owl:allValuesFrom rdfs:Literal
                              ] ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty ec:name ;
+                               owl:onProperty ecplus:name ;
                                owl:allValuesFrom rdfs:Literal
                              ] ;
              rdfs:label "Channel type"@en .
@@ -566,7 +566,7 @@ skos:notation rdf:type owl:DatatypeProperty .
 
 ###  http://www.aes.org/ontologies/X098#Device
 :Device rdf:type owl:Class ;
-        rdfs:subClassOf ccdm:ProductionDevice ,
+        rdfs:subClassOf ecplus:ProductionDevice ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :functionalRole ;
                           owl:allValuesFrom skos:Consept
@@ -640,11 +640,11 @@ skos:notation rdf:type owl:DatatypeProperty .
                                    owl:allValuesFrom :DeviceChannel
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:hasIdentifier ;
-                                   owl:allValuesFrom ec:Identifier
+                                   owl:onProperty ecplus:hasIdentifier ;
+                                   owl:allValuesFrom ecplus:Identifier
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:objectType ;
+                                   owl:onProperty ecplus:objectType ;
                                    owl:allValuesFrom skos:Concept
                                  ] ,
                                  [ rdf:type owl:Restriction ;
@@ -658,21 +658,21 @@ skos:notation rdf:type owl:DatatypeProperty .
                                    owl:onClass skos:Concept
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:end ;
+                                   owl:onProperty ecplus:end ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onClass ec:TimelinePoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:start ;
+                                   owl:onProperty ecplus:start ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass ec:TimelinePoint
+                                   owl:onClass ecplus:TimelinePoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:description ;
+                                   owl:onProperty ecplus:description ;
                                    owl:allValuesFrom rdfs:Literal
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty ec:name ;
+                                   owl:onProperty ecplus:name ;
                                    owl:allValuesFrom rdfs:Literal
                                  ] ,
                                  [ rdf:type owl:Restriction ;
@@ -798,7 +798,7 @@ skos:notation rdf:type owl:DatatypeProperty .
 
 ###  http://www.aes.org/ontologies/X098#ProcessEvent
 :ProcessEvent rdf:type owl:Class ;
-              rdfs:subClassOf ccdm:ProductionJob ,
+              rdfs:subClassOf ecplus:ProductionJob ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :assuredBy ;
                                 owl:allValuesFrom :QualityAssurance
@@ -825,7 +825,7 @@ skos:notation rdf:type owl:DatatypeProperty .
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :trackReference ;
-                                owl:allValuesFrom ec:Track
+                                owl:allValuesFrom ecplus:Track
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :transitionDuration ;
@@ -918,26 +918,8 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                  rdfs:label "Stereo to Mid Side transformer"@en .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
-ccdm:ProductionDevice rdf:type owl:Class .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionJob
-ccdm:ProductionJob rdf:type owl:Class .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#EditorialObject
-ec:EditorialObject rdf:type owl:Class .
-
-
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Identifier
 ec:Identifier rdf:type owl:Class .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
-ec:MediaResource rdf:type owl:Class ;
-                 rdfs:subClassOf ec:Resource ;
-                 rdfs:label "Media resource"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Person
@@ -954,11 +936,6 @@ ec:Role rdf:type owl:Class .
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#TimelinePoint
 ec:TimelinePoint rdf:type owl:Class .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Track
-ec:Track rdf:type owl:Class ;
-         rdfs:label "Track"@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
@@ -983,7 +960,7 @@ skos:Consept rdf:type owl:Class .
 
 ###  http://example.com/x98/example_A#RestaurationProject_A
 ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
+                                    ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
                            ec:dateCreated ex_A:time_oct16_2022 ;
                            ec:hasCreator ex_A:eng_se ;
@@ -1001,7 +978,7 @@ ex_A:agentTormodV rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/x98/example_A#destinationFile
 ex_A:destinationFile rdf:type owl:NamedIndividual ,
-                              ec:MediaResource ;
+                              ecplus:MediaResource ;
                      rdfs:comment """Generic destination file. 
 See EBU Core+ for further attributes."""@en .
 
@@ -1017,7 +994,7 @@ ex_A:eng_se rdf:type owl:NamedIndividual ,
 ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            ccdm:hasInputMediaResource ex_A:sourceFile ;
                            ccdm:hasOutputMediaResource ex_A:destinationFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
@@ -1035,13 +1012,13 @@ ex_A:soundEng rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/x98/example_A#sourceDescription
 ex_A:sourceDescription rdf:type owl:NamedIndividual ,
-                                ec:EditorialObject ;
+                                ecplus:EditorialObject ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
 
 
 ###  http://example.com/x98/example_A#sourceFile
 ex_A:sourceFile rdf:type owl:NamedIndividual ,
-                         ec:MediaResource ;
+                         ecplus:MediaResource ;
                 ec:instantiates ex_A:sourceDescription ;
                 rdfs:comment """Some generic audio source file.
 See EBU Core+ for usage."""@en .
@@ -1056,7 +1033,7 @@ ex_A:time_oct16_2022 rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/x98/example_B#RestaurationProject_B
 ex_B:RestaurationProject_B rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
+                                    ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_B:restauration_B_step_1 ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project.
 This example will not cover this in details, the properties you need will be covered by EBU Core+.
@@ -1065,7 +1042,7 @@ The project referenses the first productionjob in the chain."""@en .
 
 ###  http://example.com/x98/example_B#destinationFile
 ex_B:destinationFile rdf:type owl:NamedIndividual ,
-                              ec:MediaResource ;
+                              ecplus:MediaResource ;
                      rdfs:comment """Generic destination file.
 See EBU Core+ for further attributes."""@en .
 
@@ -1074,7 +1051,7 @@ See EBU Core+ for further attributes."""@en .
 ex_B:restauration_B_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_B:restauration_B_step_2 ;
                            ccdm:hasInputMediaResource ex_B:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
@@ -1087,7 +1064,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_B#restauration_B_step_2
 ex_B:restauration_B_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_B:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
@@ -1096,14 +1073,14 @@ This is a compact notation."""@en .
 
 ###  http://example.com/x98/example_B#sourceDescription
 ex_B:sourceDescription rdf:type owl:NamedIndividual ,
-                                ec:EditorialObject ;
+                                ecplus:EditorialObject ;
                        ec:isInstantiatedBy ex_B:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
 
 
 ###  http://example.com/x98/example_B#sourceFile
 ex_B:sourceFile rdf:type owl:NamedIndividual ,
-                         ec:MediaResource ;
+                         ecplus:MediaResource ;
                 ec:instantiates ex_B:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
@@ -1111,7 +1088,7 @@ See EBU Core+ for usage."""@en .
 
 ###  http://example.com/x98/example_C#RestaurationProject_C
 ex_C:RestaurationProject_C rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
+                                    ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_C:restauration_C_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
@@ -1121,7 +1098,7 @@ The project referenses the first productionjob in the chain."""@en .
 
 ###  http://example.com/x98/example_C#destinationFile
 ex_C:destinationFile rdf:type owl:NamedIndividual ,
-                              ec:MediaResource ;
+                              ecplus:MediaResource ;
                      rdfs:comment """Generic destination file.
 See EBU Core+ for further attributes."""@en .
 
@@ -1130,7 +1107,7 @@ See EBU Core+ for further attributes."""@en .
 ex_C:restauration_C_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_C:restauration_C_step_2 ;
                            ccdm:hasInputMediaResource ex_C:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
@@ -1143,7 +1120,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_C#restauration_C_step_2
 ex_C:restauration_C_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_C:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
@@ -1152,14 +1129,14 @@ This is a compact notation."""@en .
 
 ###  http://example.com/x98/example_C#sourceDescription
 ex_C:sourceDescription rdf:type owl:NamedIndividual ,
-                                ec:EditorialObject ;
+                                ecplus:EditorialObject ;
                        ec:isInstantiatedBy ex_C:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
 ###  http://example.com/x98/example_C#sourceFile
 ex_C:sourceFile rdf:type owl:NamedIndividual ,
-                         ec:MediaResource ;
+                         ecplus:MediaResource ;
                 ec:instantiates ex_C:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
@@ -1167,7 +1144,7 @@ See EBU Core+ for usage."""@en .
 
 ###  http://example.com/x98/example_D#RestaurationProject_D
 ex_D:RestaurationProject_D rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
+                                    ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_D:restauration_D_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
@@ -1177,7 +1154,7 @@ The project referenses the first productionjob in the chain."""@en .
 
 ###  http://example.com/x98/example_D#destinationFile
 ex_D:destinationFile rdf:type owl:NamedIndividual ,
-                              ec:MediaResource ;
+                              ecplus:MediaResource ;
                      rdfs:comment """Generic destination file.
 See EBU Core/CCDM for further attributes."""@en .
 
@@ -1186,7 +1163,7 @@ See EBU Core/CCDM for further attributes."""@en .
 ex_D:restauration_D_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_D:restauration_D_step_2 ;
                            ccdm:hasInputMediaResource ex_D:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
@@ -1199,7 +1176,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_D#restauration_D_step_2
 ex_D:restauration_D_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_D:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
@@ -1208,14 +1185,14 @@ This is a compact notation."""@en .
 
 ###  http://example.com/x98/example_D#sourceDescription
 ex_D:sourceDescription rdf:type owl:NamedIndividual ,
-                                ec:EditorialObject ;
+                                ecplus:EditorialObject ;
                        ec:isInstantiatedBy ex_D:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
 ###  http://example.com/x98/example_D#sourceFile
 ex_D:sourceFile rdf:type owl:NamedIndividual ,
-                         ec:MediaResource ;
+                         ecplus:MediaResource ;
                 ec:instantiates ex_D:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 Se EBU Core+ for usage."""@en .
@@ -1223,7 +1200,7 @@ Se EBU Core+ for usage."""@en .
 
 ###  http://example.com/x98/example_E#RestaurationProject_E
 ex_E:RestaurationProject_E rdf:type owl:NamedIndividual ,
-                                    ec:EditorialObject ;
+                                    ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_E:restauration_E_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
@@ -1233,7 +1210,7 @@ The project referenses the first productionjob in the chain."""@en .
 
 ###  http://example.com/x98/example_E#destinationFile
 ex_E:destinationFile rdf:type owl:NamedIndividual ,
-                              ec:MediaResource ;
+                              ecplus:MediaResource ;
                      rdfs:comment """Generic destination file.
 See EBU Core/CCDM for further attributes."""@en .
 
@@ -1242,7 +1219,7 @@ See EBU Core/CCDM for further attributes."""@en .
 ex_E:restauration_E_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_E:restauration_E_step_2 ;
                            ccdm:hasInputMediaResource ex_E:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
@@ -1255,7 +1232,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_E#restauration_E_step_2
 ex_E:restauration_E_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
-                                    ccdm:ProductionJob ;
+                                    ecplus:ProductionJob ;
                            ccdm:hasOutputMediaResource ex_E:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
@@ -1264,14 +1241,14 @@ This is a compact notation."""@en .
 
 ###  http://example.com/x98/example_E#sourceDescription
 ex_E:sourceDescription rdf:type owl:NamedIndividual ,
-                                ec:EditorialObject ;
+                                ecplus:EditorialObject ;
                        ec:isInstantiatedBy ex_E:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
 ###  http://example.com/x98/example_E#sourceFile
 ex_E:sourceFile rdf:type owl:NamedIndividual ,
-                         ec:MediaResource ;
+                         ecplus:MediaResource ;
                 ec:instantiates ex_E:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
