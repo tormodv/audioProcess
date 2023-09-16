@@ -1,0 +1,1509 @@
+@prefix : <http://www.aes.org/ontologies/X098#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ec: <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ccdm: <http://www.ebu.ch/metadata/ontologies/ebuccdm#> .
+@prefix ex_A: <http://example.com/x98/example_A#> .
+@prefix ex_B: <http://example.com/x98/example_B#> .
+@prefix ex_C: <http://example.com/x98/example_C#> .
+@prefix ex_D: <http://example.com/x98/example_D#> .
+@prefix ex_E: <http://example.com/x98/example_E#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vfnc: <http://www.aes.org/ontologies/X098/vocabulary/functional#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://www.aes.org/ontologies/X098> .
+
+<http://www.aes.org/ontologies/X098> rdf:type owl:Ontology ;
+                                      owl:versionIRI <http://www.aes.org/ontologies/X098/2.0.0a> ;
+                                      owl:imports <http://www.ebu.ch/metadata/ontologies/ebucoreplus/1.0.0> ;
+                                      dcterms:contributor "Kaylie Ackerman" ,
+                                                          "Tormod Værvågen" ;
+                                      dcterms:creator "AES SC-03-07"@en ;
+                                      dcterms:title """AES X098C AES standard for metadata – 
+Process and handling history
+of audio objects"""@en ;
+                                      rdfs:comment """TODO:
+
+The workerList element shall be expressed as a set of ec:hasContributor pointing to an instance of the Role class."""@en ;
+                                      owl:versionInfo 0.6 ,
+                                                      "Suport for Stereofiles, prosessed as MS-signal"@en ,
+                                                      "The first draft of a straightforward instance of example data"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dcterms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#familyName
+ec:familyName rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#givenName
+ec:givenName rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasAgent
+ec:hasAgent rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasCreator
+ec:hasCreator rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#title
+ec:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty ;
+               rdfs:subPropertyOf rdfs:label .
+
+
+###  http://www.w3.org/2006/time#hasTRS
+<http://www.w3.org/2006/time#hasTRS> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.aes.org/ontologies/X098#assuredBy
+:assuredBy rdf:type owl:ObjectProperty ;
+           rdfs:range :QualityAssurance ;
+           rdfs:label "assured by"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompRatio
+:dynamicCompRatio rdf:type owl:ObjectProperty ;
+                  rdfs:range :Ratio ;
+                  rdfs:label "dynamic compression ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpRatio
+:dynamicExpRatio rdf:type owl:ObjectProperty ;
+                 rdfs:range :Ratio ;
+                 rdfs:label "dynamic expander ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#feedsSideChainInput
+:feedsSideChainInput rdf:type owl:ObjectProperty ;
+                     rdfs:range :ProcessEvent ;
+                     rdfs:label "feeds side chain input"@en .
+
+
+###  http://www.aes.org/ontologies/X098#functionalRole
+:functionalRole rdf:type owl:ObjectProperty ;
+                rdfs:range skos:Consept ;
+                dcterms:description "Using values from vfnc:Scheme"@en ;
+                rdfs:label "functional role"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDeviceParameter
+:hasDeviceParameter rdf:type owl:ObjectProperty ;
+                    rdfs:range :DeviceParameter ;
+                    rdfs:label "device parameter"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutput
+:hasDownstreamOutput rdf:type owl:ObjectProperty ;
+                     rdfs:range :ProcessEvent ;
+                     rdfs:label "downstream output"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutputChannel
+:hasDownstreamOutputChannel rdf:type owl:ObjectProperty ;
+                            rdfs:range :DeviceChannel ;
+                            rdfs:label "downstream output channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutputMid
+:hasDownstreamOutputMid rdf:type owl:ObjectProperty ;
+                        rdfs:label "has downstream output mid-signal"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasDownstreamOutputSide
+:hasDownstreamOutputSide rdf:type owl:ObjectProperty ;
+                         rdfs:label "has downstream output side-signal"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasInputChannel
+:hasInputChannel rdf:type owl:ObjectProperty ;
+                 rdfs:range :DeviceChannel ;
+                 rdfs:label "input channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasOutputChanel
+:hasOutputChanel rdf:type owl:ObjectProperty ;
+                 rdfs:range :DeviceChannel ;
+                 rdfs:label "output channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasProcessEventGrupMember
+:hasProcessEventGrupMember rdf:type owl:ObjectProperty ;
+                           rdfs:range :ProcessEvent ;
+                           rdfs:label "prosess event group member"@en .
+
+
+###  http://www.aes.org/ontologies/X098#hasTimelineFractionProsessEvent
+:hasTimelineFractionProsessEvent rdf:type owl:ObjectProperty ;
+                                 rdfs:range :ProcessEvent ;
+                                 rdfs:label "timeline fraction prosess event"@en .
+
+
+###  http://www.aes.org/ontologies/X098#interfaceType
+:interfaceType rdf:type owl:ObjectProperty ;
+               rdfs:range skos:Consept ;
+               rdfs:label "interface type" .
+
+
+###  http://www.aes.org/ontologies/X098#reformattingReference
+:reformattingReference rdf:type owl:ObjectProperty ;
+                       rdfs:range ec:Resource ;
+                       dcterms:description "The reformattingReference element may be used to provide an link to the location of a text file containing discursive text about the preservation methodology"@en ;
+                       rdfs:label "reformatting reference"@en .
+
+
+###  http://www.aes.org/ontologies/X098#sendsToBus
+:sendsToBus rdf:type owl:ObjectProperty ;
+            rdfs:range :DeviceChannel ;
+            rdfs:label "sends to bus"@en .
+
+
+###  http://www.aes.org/ontologies/X098#settingsProfile
+:settingsProfile rdf:type owl:ObjectProperty ;
+                 rdfs:range ec:Resource .
+
+
+###  http://www.aes.org/ontologies/X098#trackReference
+:trackReference rdf:type owl:ObjectProperty ;
+                rdfs:range ec:Track ;
+                rdfs:label "track reference"@en .
+
+
+###  http://www.aes.org/ontologies/X098#transitionDuration
+:transitionDuration rdf:type owl:ObjectProperty ;
+                    rdfs:range ec:TimelinePoint ;
+                    dcterms:description "The duration of the transition to the following setting"@en ;
+                    rdfs:label "transition duration"@en .
+
+
+###  http://www.aes.org/ontologies/X098#transitionType
+:transitionType rdf:type owl:ObjectProperty ;
+                rdfs:range skos:Consept ;
+                rdfs:label "transitionType"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasAssociatedProductionJob
+ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasInputMediaResource
+ccdm:hasInputMediaResource rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasOutputMediaResource
+ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasSubJob
+ccdm:hasSubJob rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
+ccdm:usesProductionDevice rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#dateCreated
+ec:dateCreated rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
+ec:end rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
+ec:endEditUnit rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
+ec:endNormalPlayTime rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
+ec:endTimecode rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
+ec:endTimecodeDropFrame rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf ec:end .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasIdentifier
+ec:hasIdentifier rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
+ec:instantiates rdf:type owl:ObjectProperty ;
+                rdfs:label "instantiates"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#isInstantiatedBy
+ec:isInstantiatedBy rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#objectType
+ec:objectType rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
+ec:start rdf:type owl:ObjectProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
+ec:startEditUnit rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
+ec:startNormalPlayTime rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
+ec:startTimecode rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf ec:start .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
+ec:startTimecodeDropFrame rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf ec:start .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+skos:inScheme rdf:type owl:ObjectProperty ;
+              rdfs:domain skos:Consept ;
+              rdfs:label "in scheme"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.aes.org/ontologies/X098#denominator
+:denominator rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:integer ;
+             rdfs:label "denominator"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceParameterInterfacePrecision
+:deviceParameterInterfacePrecision rdf:type owl:DatatypeProperty ;
+                                   rdfs:range rdfs:Literal ;
+                                   rdfs:label "device parameter interface precision"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceParameterPresetName
+:deviceParameterPresetName rdf:type owl:DatatypeProperty ;
+                           rdfs:range rdfs:Literal ;
+                           rdfs:label "device parameter preset name"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceParameterProgramName
+:deviceParameterProgramName rdf:type owl:DatatypeProperty ;
+                            rdfs:range rdfs:Literal ;
+                            rdfs:label "device parameter program name"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceParameterUnit
+:deviceParameterUnit rdf:type owl:DatatypeProperty ;
+                     rdfs:range rdfs:Literal ;
+                     rdfs:comment "Better with skos:Consept as range? ***"@en ;
+                     rdfs:label "device parameter unit"@en .
+
+
+###  http://www.aes.org/ontologies/X098#deviceParameterValue
+:deviceParameterValue rdf:type owl:DatatypeProperty ;
+                      rdfs:range rdfs:Literal ;
+                      rdfs:label "device parameter value"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompAttack
+:dynamicCompAttack rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Attack time in seconds"@en ;
+                   rdfs:label "dynamic compression attack"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompRelease
+:dynamicCompRelease rdf:type owl:DatatypeProperty ;
+                    rdfs:range xsd:decimal ;
+                    dcterms:description "Release time in seconds"@en ;
+                    rdfs:label "dynamic compression release"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicCompTresh
+:dynamicCompTresh rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:decimal ;
+                  dcterms:description "Threshold in dBu"@en ;
+                  rdfs:label "dynamic compression threshold"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpAttack
+:dynamicExpAttack rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:decimal ;
+                  dcterms:description "Attack time in seconds"@en ;
+                  rdfs:label "dynamic expander attack"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpRelease
+:dynamicExpRelease rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Release time in seconds"@en ;
+                   rdfs:label "dynamic expander release"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicExpTresh
+:dynamicExpTresh rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:decimal ;
+                 dcterms:description "Threshold in dBu"@en ;
+                 rdfs:label "dynamic expander treshold"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicGate
+:dynamicGate rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:boolean ;
+             rdfs:label "dynamic gate flag"@en .
+
+
+###  http://www.aes.org/ontologies/X098#dynamicGateFlor
+:dynamicGateFlor rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:decimal ;
+                 dcterms:description "Threshold in dBu"@en ;
+                 rdfs:label "dynamic gate flor"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterEqFreq
+:filterEqFreq rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:decimal ;
+              dcterms:description "Equaliser frequency in Hz"@en ;
+              rdfs:label "equaliser frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterEqGain
+:filterEqGain rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:decimal ;
+              dcterms:description "Gain in dBu"@en ;
+              rdfs:label "equliser gain"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterEqQfactor
+:filterEqQfactor rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:decimal ;
+                 rdfs:label "equliser q-factor"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterHighPassFreq
+:filterHighPassFreq rdf:type owl:DatatypeProperty ;
+                    rdfs:range xsd:decimal ;
+                    dcterms:description "High pass frequency in Hz"@en ;
+                    rdfs:label "high pass frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#filterLowPassFreq
+:filterLowPassFreq rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:decimal ;
+                   dcterms:description "Low pass frequency in Hz"@en ;
+                   rdfs:label "low pass frequency"@en .
+
+
+###  http://www.aes.org/ontologies/X098#inputFileStatusDeleted
+:inputFileStatusDeleted rdf:type owl:DatatypeProperty ;
+                        rdfs:range xsd:boolean ;
+                        rdfs:label "input file status deleted flag"@en .
+
+
+###  http://www.aes.org/ontologies/X098#numerator
+:numerator rdf:type owl:DatatypeProperty ;
+           rdfs:range xsd:integer ;
+           rdfs:label "numerator"@en .
+
+
+###  http://www.aes.org/ontologies/X098#playbackMediaChannel
+:playbackMediaChannel rdf:type owl:DatatypeProperty ;
+                      rdfs:comment "Check range! ***"@en ;
+                      rdfs:label "playback media channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#qualityAssuranceFail
+:qualityAssuranceFail rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:label "quality assurance fail?"@en .
+
+
+###  http://www.aes.org/ontologies/X098#qualityAssuranceNote
+:qualityAssuranceNote rdf:type owl:DatatypeProperty ;
+                      rdfs:range rdfs:Literal ;
+                      dcterms:description "The note element may be used to provide discursive text regarding the specifics of the quality assurance work and its outcome."@en ;
+                      rdfs:label "note"@en .
+
+
+###  http://www.aes.org/ontologies/X098#recordMediaChannel
+:recordMediaChannel rdf:type owl:DatatypeProperty ;
+                    rdfs:comment "Check range! ***"@en ;
+                    rdfs:label "record media channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#reformattingText
+:reformattingText rdf:type owl:DatatypeProperty ;
+                  rdfs:range rdfs:Literal ;
+                  dcterms:description "The reformattingText element may be used to include discursive text about the preservation methodology directly in the processEvent."@en ;
+                  rdfs:label "reformating text"@en .
+
+
+###  http://www.aes.org/ontologies/X098#sequenceNum
+:sequenceNum rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:integer ;
+             rdfs:label "sequence number"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#description
+ec:description rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
+ec:endEditUnit rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
+ec:endNormalPlayTime rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
+ec:endTimecode rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
+ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#name
+ec:name rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
+ec:startEditUnit rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
+ec:startNormalPlayTime rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
+ec:startTimecode rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
+ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#notation
+skos:notation rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.aes.org/ontologies/X098#ChannelType
+:ChannelType rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:hasIdentifier ;
+                               owl:allValuesFrom ec:Identifier
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:objectType ;
+                               owl:allValuesFrom skos:Concept
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:description ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ec:name ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ;
+             rdfs:label "Channel type"@en .
+
+
+###  http://www.aes.org/ontologies/X098#Device
+:Device rdf:type owl:Class ;
+        rdfs:subClassOf ccdm:ProductionDevice ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :functionalRole ;
+                          owl:allValuesFrom skos:Consept
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasInputChannel ;
+                          owl:allValuesFrom :DeviceChannel
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasOutputChanel ;
+                          owl:allValuesFrom :DeviceChannel
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :settingsProfile ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass ec:Resource
+                        ] ;
+        dcterms:description "The device element shall be used to describe the setup and characteristics of a single device in the signal graph."@en ;
+        rdfs:label "Device"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceChannel
+:DeviceChannel rdf:type owl:Class ;
+               rdfs:subClassOf :ChannelType ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasDeviceParameter ;
+                                 owl:someValuesFrom :DeviceParameter
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasDownstreamOutputChannel ;
+                                 owl:allValuesFrom :DeviceChannel
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :interfaceType ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass skos:Concept
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :playbackMediaChannel ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:boolean
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :recordMediaChannel ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:boolean
+                               ] ;
+               dcterms:description "The DeviceChanel is an abstract class that serves as a base  for DeviceInputChanel and DeviceOutputChannel."@en ;
+               rdfs:label "Device Channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceInputChannel
+:DeviceInputChannel rdf:type owl:Class ;
+                    rdfs:subClassOf :DeviceChannel ;
+                    owl:disjointWith :DeviceOutputChannel ;
+                    dcterms:description "The DeviceInputChannel element shall be used to represent a single input connection on the device. One inputChannel element shall be present for each audio stream passing through a physical input connection that is used on the device."@en ;
+                    rdfs:label "Device input channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceOutputChannel
+:DeviceOutputChannel rdf:type owl:Class ;
+                     rdfs:subClassOf :DeviceChannel ;
+                     dcterms:description "The DeviceOutputChannel element shall be used to represent a single output connection on the device. One DeviceOutputChannel shall be present for each audio stream passing through a physical output connection that is used on the device."@en ;
+                     rdfs:label "Device output channel"@en .
+
+
+###  http://www.aes.org/ontologies/X098#DeviceParameter
+:DeviceParameter rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :sendsToBus ;
+                                   owl:allValuesFrom :DeviceChannel
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:hasIdentifier ;
+                                   owl:allValuesFrom ec:Identifier
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:objectType ;
+                                   owl:allValuesFrom skos:Concept
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :transitionDuration ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :transitionType ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass skos:Concept
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:end ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:start ;
+                                   owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass ec:TimelinePoint
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:description ;
+                                   owl:allValuesFrom rdfs:Literal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ec:name ;
+                                   owl:allValuesFrom rdfs:Literal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterInterfacePrecision ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterPresetName ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterProgramName ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterUnit ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :deviceParameterValue ;
+                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ;
+                 rdfs:label "Device parameter"@en .
+
+
+###  http://www.aes.org/ontologies/X098#Dynamic
+:Dynamic rdf:type owl:Class ;
+         rdfs:subClassOf :ProcessEvent ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompRatio ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Ratio
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpRatio ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Ratio
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompAttack ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompRelease ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicCompTresh ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpAttack ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpRelease ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicExpTresh ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:decimal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicGate ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:boolean
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dynamicGateFlor ;
+                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         owl:disjointWith :Filter ,
+                          :QualityAssurance ;
+         dcterms:description "Parameters for dynamic process events"@en ;
+         rdfs:label "Dynamic"@en .
+
+
+###  http://www.aes.org/ontologies/X098#Filter
+:Filter rdf:type owl:Class ;
+        rdfs:subClassOf :ProcessEvent ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqFreq ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqGain ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterEqQfactor ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterHighPassFreq ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :filterLowPassFreq ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:decimal
+                        ] ;
+        owl:disjointWith :QualityAssurance ;
+        dcterms:description "Parameters for filter process events"@en ;
+        rdfs:label "Filter"@en .
+
+
+###  http://www.aes.org/ontologies/X098#MidSideToStereo
+:MidSideToStereo rdf:type owl:Class ;
+                 rdfs:subClassOf :ProcessEvent ;
+                 dcterms:description "A logical step for further downstream processing of a mid/side signal as a regular left/right stereo signal."@en ;
+                 rdfs:label "Mid side to stereo transformer"@en .
+
+
+###  http://www.aes.org/ontologies/X098#ProcessEvent
+:ProcessEvent rdf:type owl:Class ;
+              rdfs:subClassOf ccdm:ProductionJob ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :assuredBy ;
+                                owl:allValuesFrom :QualityAssurance
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :feedsSideChainInput ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDownstreamOutput ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasProcessEventGrupMember ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTimelineFractionProsessEvent ;
+                                owl:allValuesFrom :ProcessEvent
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :reformattingReference ;
+                                owl:allValuesFrom ec:Resource
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :trackReference ;
+                                owl:allValuesFrom ec:Track
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :transitionDuration ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :transitionType ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass skos:Concept
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:dateCreated ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass <http://www.w3.org/2006/time#Instant>
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:end ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ec:start ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ec:TimelinePoint
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :reformattingText ;
+                                owl:allValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :inputFileStatusDeleted ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:boolean
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :sequenceNum ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:integer
+                              ] ;
+              dcterms:description """The ProcessEvent element shall be used to describe a single step of work involved in the restoration and/or preservation of an audio object. 
+
+NOTE Each processEvent is bounded by the constraint that it shall have one or more input media objects and one or more output media objects. The event is therefore the documentation that describes what was done to effect the input media, to create the resulting output media. It is possible for the input and output media to refer to the same audioFileReference, adl, or audioObject element. For example, the action of cleaning a record, where both the input and output media of the event point to the same MediaObject describing the record."""@en ;
+              rdfs:label "Process event"@en .
+
+
+###  http://www.aes.org/ontologies/X098#QualityAssurance
+:QualityAssurance rdf:type owl:Class ;
+                  rdfs:subClassOf :ProcessEvent ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :qualityAssuranceFail ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:boolean
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :qualityAssuranceNote ;
+                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ;
+                  rdfs:label "Quality assurance"@en .
+
+
+###  http://www.aes.org/ontologies/X098#Ratio
+:Ratio rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :denominator ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :numerator ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ;
+       dcterms:description "Concept for describing ratios."@en ;
+       rdfs:label "Ratio"@en .
+
+
+###  http://www.aes.org/ontologies/X098#StereoToMidSide
+:StereoToMidSide rdf:type owl:Class ;
+                 rdfs:subClassOf :ProcessEvent ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDownstreamOutputMid ;
+                                   owl:allValuesFrom :ProcessEvent
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDownstreamOutputSide ;
+                                   owl:allValuesFrom :ProcessEvent
+                                 ] ;
+                 dcterms:description "A logical step for further downstream processing of a stereo-signal as separate mid/side processing."@en ;
+                 rdfs:label "Stereo to Mid Side transformer"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionDevice
+ccdm:ProductionDevice rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebuccdm#ProductionJob
+ccdm:ProductionJob rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#EditorialObject
+ec:EditorialObject rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Identifier
+ec:Identifier rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#MediaResource
+ec:MediaResource rdf:type owl:Class ;
+                 rdfs:subClassOf ec:Resource ;
+                 rdfs:label "Media resource"@en .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Person
+ec:Person rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Resource
+ec:Resource rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Role
+ec:Role rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#TimelinePoint
+ec:TimelinePoint rdf:type owl:Class .
+
+
+###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Track
+ec:Track rdf:type owl:Class ;
+         rdfs:label "Track"@en .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+skos:ConceptScheme rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Consept
+skos:Consept rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Instant
+<http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/x98/example_A#RestaurationProject_A
+ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
+                           ec:dateCreated ex_A:time_oct16_2022 ;
+                           ec:hasCreator ex_A:eng_se ;
+                           ec:title "Restauration job example A"@en ;
+                           rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
+This example will not cover this in details, the properties you need will be covered by EBU Core+"""@en .
+
+
+###  http://example.com/x98/example_A#agentTormodV
+ex_A:agentTormodV rdf:type owl:NamedIndividual ,
+                           ec:Person ;
+                  ec:familyName "Værvågen"@en ;
+                  ec:givenName "Tormod"@en .
+
+
+###  http://example.com/x98/example_A#destinationFile
+ex_A:destinationFile rdf:type owl:NamedIndividual ,
+                              ec:MediaResource ;
+                     rdfs:comment """Generic destination file. 
+See EBU Core+ for further attributes."""@en .
+
+
+###  http://example.com/x98/example_A#eng_se
+ex_A:eng_se rdf:type owl:NamedIndividual ,
+                     ec:Role ;
+            ec:objectType ex_A:soundEng ;
+            ec:hasAgent ex_A:agentTormodV .
+
+
+###  http://example.com/x98/example_A#restauration_A_step_1
+ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
+                                    :Filter ,
+                                    :ProcessEvent ,
+                                    ccdm:ProductionJob ;
+                           ccdm:hasInputMediaResource ex_A:sourceFile ;
+                           ccdm:hasOutputMediaResource ex_A:destinationFile ;
+                           :filterHighPassFreq "80"^^xsd:int ;
+                           :sequenceNum "1"^^xsd:int ;
+                           rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en ,
+                                        "Type :Filter will be enough, the supertypes are added for clarity."@en .
+
+
+###  http://example.com/x98/example_A#soundEng
+ex_A:soundEng rdf:type owl:NamedIndividual ,
+                       skos:Concept ;
+              skos:prefLabel "Sound engineer"@en .
+
+
+###  http://example.com/x98/example_A#sourceDescription
+ex_A:sourceDescription rdf:type owl:NamedIndividual ,
+                                ec:EditorialObject ;
+                       rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
+
+
+###  http://example.com/x98/example_A#sourceFile
+ex_A:sourceFile rdf:type owl:NamedIndividual ,
+                         ec:MediaResource ;
+                ec:instantiates ex_A:sourceDescription ;
+                rdfs:comment """Some generic audio source file.
+See EBU Core+ for usage."""@en .
+
+
+###  http://example.com/x98/example_A#time_oct16_2022
+ex_A:time_oct16_2022 rdf:type owl:NamedIndividual ,
+                              <http://www.w3.org/2006/time#Instant> ;
+                     <http://www.w3.org/2006/time#hasTRS> <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
+                     <http://www.w3.org/2006/time#inXSDDateTimeStamp> "2022-10-16T14:59:32Z"^^xsd:dateTimeStamp .
+
+
+###  http://example.com/x98/example_B#RestaurationProject_B
+ex_B:RestaurationProject_B rdf:type owl:NamedIndividual ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex_B:restauration_B_step_1 ;
+                           rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project.
+This example will not cover this in details, the properties you need will be covered by EBU Core+.
+The project referenses the first productionjob in the chain."""@en .
+
+
+###  http://example.com/x98/example_B#destinationFile
+ex_B:destinationFile rdf:type owl:NamedIndividual ,
+                              ec:MediaResource ;
+                     rdfs:comment """Generic destination file.
+See EBU Core+ for further attributes."""@en .
+
+
+###  http://example.com/x98/example_B#restauration_B_step_1
+ex_B:restauration_B_step_1 rdf:type owl:NamedIndividual ,
+                                    :Filter ,
+                                    :ProcessEvent ,
+                                    ccdm:ProductionJob ;
+                           :hasDownstreamOutput ex_B:restauration_B_step_2 ;
+                           ccdm:hasInputMediaResource ex_B:sourceFile ;
+                           :filterHighPassFreq "80"^^xsd:int ;
+                           :sequenceNum "1"^^xsd:int ;
+                           rdfs:comment "*** Add proper subjobs here ***"@en ,
+                                        """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_B#restauration_B_step_2
+ex_B:restauration_B_step_2 rdf:type owl:NamedIndividual ,
+                                    :Dynamic ,
+                                    ccdm:ProductionJob ;
+                           ccdm:hasOutputMediaResource ex_B:destinationFile ;
+                           :sequenceNum "2"^^xsd:int ;
+                           rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_B#sourceDescription
+ex_B:sourceDescription rdf:type owl:NamedIndividual ,
+                                ec:EditorialObject ;
+                       ec:isInstantiatedBy ex_B:sourceFile ;
+                       rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
+
+
+###  http://example.com/x98/example_B#sourceFile
+ex_B:sourceFile rdf:type owl:NamedIndividual ,
+                         ec:MediaResource ;
+                ec:instantiates ex_B:sourceDescription ;
+                rdfs:comment """Some generic source file for the audio.
+See EBU Core+ for usage."""@en .
+
+
+###  http://example.com/x98/example_C#RestaurationProject_C
+ex_C:RestaurationProject_C rdf:type owl:NamedIndividual ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex_C:restauration_C_step_1 ;
+                           rdfs:comment "*** TEMPLATE ***"@en ,
+                                        """This object will hold data, describing the editorial information about the audio restauration project.
+This example will not cover this in details, the properties you need will be covered by EBU Core+.
+The project referenses the first productionjob in the chain."""@en .
+
+
+###  http://example.com/x98/example_C#destinationFile
+ex_C:destinationFile rdf:type owl:NamedIndividual ,
+                              ec:MediaResource ;
+                     rdfs:comment """Generic destination file.
+See EBU Core+ for further attributes."""@en .
+
+
+###  http://example.com/x98/example_C#restauration_C_step_1
+ex_C:restauration_C_step_1 rdf:type owl:NamedIndividual ,
+                                    :Filter ,
+                                    :ProcessEvent ,
+                                    ccdm:ProductionJob ;
+                           :hasDownstreamOutput ex_C:restauration_C_step_2 ;
+                           ccdm:hasInputMediaResource ex_C:sourceFile ;
+                           :filterHighPassFreq "80"^^xsd:int ;
+                           :sequenceNum "1"^^xsd:int ;
+                           rdfs:comment "***  Add proper subjobs here  ***"@en ,
+                                        """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_C#restauration_C_step_2
+ex_C:restauration_C_step_2 rdf:type owl:NamedIndividual ,
+                                    :Dynamic ,
+                                    ccdm:ProductionJob ;
+                           ccdm:hasOutputMediaResource ex_C:destinationFile ;
+                           :sequenceNum "2"^^xsd:int ;
+                           rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_C#sourceDescription
+ex_C:sourceDescription rdf:type owl:NamedIndividual ,
+                                ec:EditorialObject ;
+                       ec:isInstantiatedBy ex_C:sourceFile ;
+                       rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
+
+
+###  http://example.com/x98/example_C#sourceFile
+ex_C:sourceFile rdf:type owl:NamedIndividual ,
+                         ec:MediaResource ;
+                ec:instantiates ex_C:sourceDescription ;
+                rdfs:comment """Some generic source file for the audio.
+See EBU Core+ for usage."""@en .
+
+
+###  http://example.com/x98/example_D#RestaurationProject_D
+ex_D:RestaurationProject_D rdf:type owl:NamedIndividual ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex_D:restauration_D_step_1 ;
+                           rdfs:comment "*** TEMPLATE ***"@en ,
+                                        """This object will hold data, describing the editorial information about the audio restauration project.
+This example will not cover this in details, the properties you need will be covered by EBU Core+.
+The project referenses the first productionjob in the chain."""@en .
+
+
+###  http://example.com/x98/example_D#destinationFile
+ex_D:destinationFile rdf:type owl:NamedIndividual ,
+                              ec:MediaResource ;
+                     rdfs:comment """Generic destination file.
+See EBU Core/CCDM for further attributes."""@en .
+
+
+###  http://example.com/x98/example_D#restauration_D_step_1
+ex_D:restauration_D_step_1 rdf:type owl:NamedIndividual ,
+                                    :Filter ,
+                                    :ProcessEvent ,
+                                    ccdm:ProductionJob ;
+                           :hasDownstreamOutput ex_D:restauration_D_step_2 ;
+                           ccdm:hasInputMediaResource ex_D:sourceFile ;
+                           :filterHighPassFreq "80"^^xsd:int ;
+                           :sequenceNum "1"^^xsd:int ;
+                           rdfs:comment "*** Add proper subjobs here ***"@en ,
+                                        """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_D#restauration_D_step_2
+ex_D:restauration_D_step_2 rdf:type owl:NamedIndividual ,
+                                    :Dynamic ,
+                                    ccdm:ProductionJob ;
+                           ccdm:hasOutputMediaResource ex_D:destinationFile ;
+                           :sequenceNum "2"^^xsd:int ;
+                           rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_D#sourceDescription
+ex_D:sourceDescription rdf:type owl:NamedIndividual ,
+                                ec:EditorialObject ;
+                       ec:isInstantiatedBy ex_D:sourceFile ;
+                       rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
+
+
+###  http://example.com/x98/example_D#sourceFile
+ex_D:sourceFile rdf:type owl:NamedIndividual ,
+                         ec:MediaResource ;
+                ec:instantiates ex_D:sourceDescription ;
+                rdfs:comment """Some generic source file for the audio.
+Se EBU Core+ for usage."""@en .
+
+
+###  http://example.com/x98/example_E#RestaurationProject_E
+ex_E:RestaurationProject_E rdf:type owl:NamedIndividual ,
+                                    ec:EditorialObject ;
+                           ccdm:hasAssociatedProductionJob ex_E:restauration_E_step_1 ;
+                           rdfs:comment "*** TEMPLATE ***"@en ,
+                                        """This object will hold data, describing the editorial information about the audio restauration project.
+This example will not cover this in details, the properties you need will be covered by EBU Core+.
+The project referenses the first productionjob in the chain."""@en .
+
+
+###  http://example.com/x98/example_E#destinationFile
+ex_E:destinationFile rdf:type owl:NamedIndividual ,
+                              ec:MediaResource ;
+                     rdfs:comment """Generic destination file.
+See EBU Core/CCDM for further attributes."""@en .
+
+
+###  http://example.com/x98/example_E#restauration_E_step_1
+ex_E:restauration_E_step_1 rdf:type owl:NamedIndividual ,
+                                    :Filter ,
+                                    :ProcessEvent ,
+                                    ccdm:ProductionJob ;
+                           :hasDownstreamOutput ex_E:restauration_E_step_2 ;
+                           ccdm:hasInputMediaResource ex_E:sourceFile ;
+                           :filterHighPassFreq "80"^^xsd:int ;
+                           :sequenceNum "1"^^xsd:int ;
+                           rdfs:comment "*** Add proper subjobs here ***"@en ,
+                                        """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_E#restauration_E_step_2
+ex_E:restauration_E_step_2 rdf:type owl:NamedIndividual ,
+                                    :Dynamic ,
+                                    ccdm:ProductionJob ;
+                           ccdm:hasOutputMediaResource ex_E:destinationFile ;
+                           :sequenceNum "2"^^xsd:int ;
+                           rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
+This is a compact notation."""@en .
+
+
+###  http://example.com/x98/example_E#sourceDescription
+ex_E:sourceDescription rdf:type owl:NamedIndividual ,
+                                ec:EditorialObject ;
+                       ec:isInstantiatedBy ex_E:sourceFile ;
+                       rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
+
+
+###  http://example.com/x98/example_E#sourceFile
+ex_E:sourceFile rdf:type owl:NamedIndividual ,
+                         ec:MediaResource ;
+                ec:instantiates ex_E:sourceDescription ;
+                rdfs:comment """Some generic source file for the audio.
+See EBU Core+ for usage."""@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#AnalogToDigitalConverter
+vfnc:AnalogToDigitalConverter rdf:type owl:NamedIndividual ,
+                                       skos:Consept ;
+                              skos:inScheme vfnc:Scheme ;
+                              skos:notation "ANALOG_TO_DIGITAL_CONVERTER"^^xsd:string ;
+                              skos:prefLabel "Analog to digital converter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Cleaner
+vfnc:Cleaner rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "CLEANER"^^xsd:string ;
+             skos:prefLabel "Cleaner"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#ConvectionOven
+vfnc:ConvectionOven rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "CONVECTION_OVEN"^^xsd:string ;
+                    skos:prefLabel "Convection oven"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Decoder
+vfnc:Decoder rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "DECODER"^^xsd:string ;
+             skos:prefLabel "Decoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Deesser
+vfnc:Deesser rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "DE-ESSER"^^xsd:string ;
+             skos:prefLabel "De-esser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DelayEffect
+vfnc:DelayEffect rdf:type owl:NamedIndividual ,
+                          skos:Consept ;
+                 skos:inScheme vfnc:Scheme ;
+                 skos:notation "DELAY_EFFECT"^^xsd:string ;
+                 skos:prefLabel "Delay effect"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Denoiser
+vfnc:Denoiser rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "DENOISER"^^xsd:string ;
+              skos:prefLabel "Denoiser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DigitalToAnalogConverter
+vfnc:DigitalToAnalogConverter rdf:type owl:NamedIndividual ,
+                                       skos:Consept ;
+                              skos:inScheme vfnc:Scheme ;
+                              skos:notation "DIGITAL_TO_ANALOG_CONVERTER"^^xsd:string ;
+                              skos:prefLabel "Digital to analog converter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DistributionAmplifier
+vfnc:DistributionAmplifier rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "DISTRIBUTION_AMPLIFIER"^^xsd:string ;
+                           skos:prefLabel "Distribution amplifier"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicCompressor
+vfnc:DynamicCompressor rdf:type owl:NamedIndividual ,
+                                skos:Consept ;
+                       skos:inScheme vfnc:Scheme ;
+                       skos:notation "DYNAMIC_COMPRESSOR"^^xsd:string ;
+                       skos:prefLabel "Dynamic compressor"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicEqualiser
+vfnc:DynamicEqualiser rdf:type owl:NamedIndividual ,
+                               skos:Consept ;
+                      skos:inScheme vfnc:Scheme ;
+                      skos:notation "DYNAMIC_EQUALISER"^^xsd:string ;
+                      skos:prefLabel "Dynamic equaliser"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicExpander
+vfnc:DynamicExpander rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "DYNAMIC_EXPANDER"^^xsd:string ;
+                     skos:prefLabel "Dynamic expander"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#DynamicLimiter
+vfnc:DynamicLimiter rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "DYNAMIC_LIMITER"^^xsd:string ;
+                    skos:prefLabel "Dynamic limiter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Encoder
+vfnc:Encoder rdf:type owl:NamedIndividual ,
+                      skos:Consept ;
+             skos:inScheme vfnc:Scheme ;
+             skos:notation "ENCODER"^^xsd:string ;
+             skos:prefLabel "Encoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#EqualiserFilter
+vfnc:EqualiserFilter rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "EQUALISER/FILTER"^^xsd:string ;
+                     skos:prefLabel "Equaliser/filter"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#LineBalanceInterfaceTransformer
+vfnc:LineBalanceInterfaceTransformer rdf:type owl:NamedIndividual ,
+                                              skos:Consept ;
+                                     skos:inScheme vfnc:Scheme ;
+                                     skos:notation "LINE_BALANCE_INTERFACE/TRANSFORMER"^^xsd:string ;
+                                     skos:prefLabel "Line balance interface/transformer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Mixer
+vfnc:Mixer rdf:type owl:NamedIndividual ,
+                    skos:Consept ;
+           skos:inScheme vfnc:Scheme ;
+           skos:notation "MIXER"^^xsd:string ;
+           skos:prefLabel "Mixer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#MsMatrix
+vfnc:MsMatrix rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "MS_MATRIX"^^xsd:string ;
+              skos:prefLabel "MS matrix"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#NoiseReductionDecoder
+vfnc:NoiseReductionDecoder rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "NOISE_REDUCTION_DECODER"^^xsd:string ;
+                           skos:prefLabel "Noise reduction decoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#NoiseReductionEncoder
+vfnc:NoiseReductionEncoder rdf:type owl:NamedIndividual ,
+                                    skos:Consept ;
+                           skos:inScheme vfnc:Scheme ;
+                           skos:notation "NOISE_REDUCTION_ENCODER"^^xsd:string ;
+                           skos:prefLabel "Noise reduction encoder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Preamplifier
+vfnc:Preamplifier rdf:type owl:NamedIndividual ,
+                           skos:Consept ;
+                  skos:inScheme vfnc:Scheme ;
+                  skos:notation "PREAMPLIFIER"^^xsd:string ;
+                  skos:prefLabel "Preamplifier"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Recorder
+vfnc:Recorder rdf:type owl:NamedIndividual ,
+                       skos:Consept ;
+              skos:inScheme vfnc:Scheme ;
+              skos:notation "RECORDER"^^xsd:string ;
+              skos:prefLabel "Recorder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Reproducer
+vfnc:Reproducer rdf:type owl:NamedIndividual ,
+                         skos:Consept ;
+                skos:inScheme vfnc:Scheme ;
+                skos:notation "REPRODUCER"^^xsd:string ;
+                skos:prefLabel "Reproducer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#ReproducerRecorder
+vfnc:ReproducerRecorder rdf:type owl:NamedIndividual ,
+                                 skos:Consept ;
+                        skos:inScheme vfnc:Scheme ;
+                        skos:notation "REPRODUCER/RECORDER"^^xsd:string ;
+                        skos:prefLabel "Reproducer/Recorder"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#Scheme
+vfnc:Scheme rdf:type owl:NamedIndividual ,
+                     skos:ConceptScheme ;
+            skos:prefLabel "General classification for audio equipment"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalAnalyzer
+vfnc:SignalAnalyzer rdf:type owl:NamedIndividual ,
+                             skos:Consept ;
+                    skos:inScheme vfnc:Scheme ;
+                    skos:notation "SIGNAL_ANALYZER"^^xsd:string ;
+                    skos:prefLabel "signal analyzer"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalGenerator
+vfnc:SignalGenerator rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "SIGNAL_GENERATOR"^^xsd:string ;
+                     skos:prefLabel "Signal generator"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SignalProcessor
+vfnc:SignalProcessor rdf:type owl:NamedIndividual ,
+                              skos:Consept ;
+                     skos:inScheme vfnc:Scheme ;
+                     skos:notation "SIGNAL_PROCESSOR"^^xsd:string ;
+                     skos:prefLabel "Signal processor"@en .
+
+
+###  http://www.aes.org/ontologies/X098/vocabulary/functional#SpacialEffect
+vfnc:SpacialEffect rdf:type owl:NamedIndividual ,
+                            skos:Consept ;
+                   skos:inScheme vfnc:Scheme ;
+                   skos:notation "SPACIAL_EFFECT"^^xsd:string ;
+                   skos:prefLabel "Spacial effect"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
