@@ -74,14 +74,6 @@ ec:hasAgent rdf:type owl:AnnotationProperty .
 ec:hasCreator rdf:type owl:AnnotationProperty .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#title
-ec:title rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#prefLabel
-skos:prefLabel rdf:type owl:AnnotationProperty .
-
-
 #################################################################
 #    Object Properties
 #################################################################
@@ -238,10 +230,6 @@ ec:dateCreated rdf:type owl:ObjectProperty .
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasIdentifier
 ec:hasIdentifier rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#isInstantiatedBy
-ec:isInstantiatedBy rdf:type owl:ObjectProperty .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucoreplus#instantiates
@@ -590,7 +578,7 @@ skos:notation rdf:type owl:DatatypeProperty .
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :transitionDuration ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass ec:TimelinePoint
+                                   owl:onClass ecplus:TimelinePoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :transitionType ;
@@ -600,7 +588,7 @@ skos:notation rdf:type owl:DatatypeProperty .
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty ecplus:end ;
                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass ec:TimelinePoint
+                                   owl:onClass ecplus:TimelinePoint
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty ecplus:start ;
@@ -770,7 +758,7 @@ skos:notation rdf:type owl:DatatypeProperty .
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :transitionDuration ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass ec:TimelinePoint
+                                owl:onClass ecplus:TimelinePoint
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :transitionType ;
@@ -785,12 +773,12 @@ skos:notation rdf:type owl:DatatypeProperty .
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty ecplus:end ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass ec:TimelinePoint
+                                owl:onClass ecplus:TimelinePoint
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty ecplus:start ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass ec:TimelinePoint
+                                owl:onClass ecplus:TimelinePoint
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :reformattingText ;
@@ -870,24 +858,8 @@ ec:Resource rdf:type owl:Class .
 ec:Role rdf:type owl:Class .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#TimelinePoint
-ec:TimelinePoint rdf:type owl:Class .
-
-
-###  http://www.w3.org/2004/02/skos/core#Concept
-skos:Concept rdf:type owl:Class .
-
-
-###  http://www.w3.org/2004/02/skos/core#ConceptScheme
-skos:ConceptScheme rdf:type owl:Class .
-
-
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class .
-
-
-###  http://www.w3.org/2006/time#Instant
-time:Instant rdf:type owl:Class .
 
 
 #################################################################
@@ -899,8 +871,8 @@ ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
                            ecplus:dateCreated ex_A:time_oct16_2022 ;
+                           ecplus:title "Restauration job example A"@en ;
                            ec:hasCreator ex_A:eng_se ;
-                           ec:title "Restauration job example A"@en ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
 This example will not cover this in details, the properties you need will be covered by EBU Core+"""@en .
 
@@ -1010,7 +982,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_B#sourceDescription
 ex_B:sourceDescription rdf:type owl:NamedIndividual ,
                                 ecplus:EditorialObject ;
-                       ec:isInstantiatedBy ex_B:sourceFile ;
+                       ecplus:isInstantiatedBy ex_B:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core/AES60"@en .
 
 
@@ -1066,7 +1038,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_C#sourceDescription
 ex_C:sourceDescription rdf:type owl:NamedIndividual ,
                                 ecplus:EditorialObject ;
-                       ec:isInstantiatedBy ex_C:sourceFile ;
+                       ecplus:isInstantiatedBy ex_C:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
@@ -1122,7 +1094,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_D#sourceDescription
 ex_D:sourceDescription rdf:type owl:NamedIndividual ,
                                 ecplus:EditorialObject ;
-                       ec:isInstantiatedBy ex_D:sourceFile ;
+                       ecplus:isInstantiatedBy ex_D:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
@@ -1178,7 +1150,7 @@ This is a compact notation."""@en .
 ###  http://example.com/x98/example_E#sourceDescription
 ex_E:sourceDescription rdf:type owl:NamedIndividual ,
                                 ecplus:EditorialObject ;
-                       ec:isInstantiatedBy ex_E:sourceFile ;
+                       ecplus:isInstantiatedBy ex_E:sourceFile ;
                        rdfs:comment "The description of the original resource using attributes from EBU Core+"@en .
 
 
