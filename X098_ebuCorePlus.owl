@@ -58,22 +58,6 @@ dcterms:description rdf:type owl:AnnotationProperty .
 dcterms:title rdf:type owl:AnnotationProperty .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#familyName
-ec:familyName rdf:type owl:AnnotationProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#givenName
-ec:givenName rdf:type owl:AnnotationProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasAgent
-ec:hasAgent rdf:type owl:AnnotationProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasCreator
-ec:hasCreator rdf:type owl:AnnotationProperty .
-
-
 #################################################################
 #    Object Properties
 #################################################################
@@ -202,12 +186,6 @@ ec:hasCreator rdf:type owl:AnnotationProperty .
 :transitionType rdf:type owl:ObjectProperty ;
                 rdfs:range skos:Consept ;
                 rdfs:label "transitionType"@en .
-
-
-###  http://www.w3.org/2004/02/skos/core#inScheme
-skos:inScheme rdf:type owl:ObjectProperty ;
-              rdfs:domain skos:Consept ;
-              rdfs:label "in scheme"@en .
 
 
 #################################################################
@@ -388,46 +366,6 @@ skos:inScheme rdf:type owl:ObjectProperty ;
 :sequenceNum rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:integer ;
              rdfs:label "sequence number"@en .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#description
-ec:description rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
-ec:endEditUnit rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
-ec:endNormalPlayTime rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
-ec:endTimecode rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
-ec:endTimecodeDropFrame rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#name
-ec:name rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
-ec:startEditUnit rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
-ec:startNormalPlayTime rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
-ec:startTimecode rdf:type owl:DatatypeProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
-ec:startTimecodeDropFrame rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#notation
@@ -825,6 +763,10 @@ ec:Resource rdf:type owl:Class .
 ec:Role rdf:type owl:Class .
 
 
+###  http://www.ebu.ch/metadata/ontologies/ebucoreplus#Role
+ecplus:Role rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2004/02/skos/core#Consept
 skos:Consept rdf:type owl:Class .
 
@@ -838,8 +780,8 @@ ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
                            ecplus:dateCreated ex_A:time_oct16_2022 ;
                            ecplus:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
+                           ecplus:hasCreator ex_A:eng_se ;
                            ecplus:title "Restauration job example A"@en ;
-                           ec:hasCreator ex_A:eng_se ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
 This example will not cover this in details, the properties you need will be covered by EBU Core+"""@en .
 
@@ -847,8 +789,8 @@ This example will not cover this in details, the properties you need will be cov
 ###  http://example.com/x98/example_A#agentTormodV
 ex_A:agentTormodV rdf:type owl:NamedIndividual ,
                            ecplus:Person ;
-                  ec:familyName "Værvågen"@en ;
-                  ec:givenName "Tormod"@en .
+                  ecplus:familyName "Værvågen"@en ;
+                  ecplus:givenName "Tormod"@en .
 
 
 ###  http://example.com/x98/example_A#destinationFile
@@ -860,9 +802,9 @@ See EBU Core+ for further attributes."""@en .
 
 ###  http://example.com/x98/example_A#eng_se
 ex_A:eng_se rdf:type owl:NamedIndividual ,
-                     ec:Role ;
-            ecplus:objectType ex_A:soundEng ;
-            ec:hasAgent ex_A:agentTormodV .
+                     ecplus:Role ;
+            ecplus:hasAgent ex_A:agentTormodV ;
+            ecplus:objectType ex_A:soundEng .
 
 
 ###  http://example.com/x98/example_A#restauration_A_step_1
