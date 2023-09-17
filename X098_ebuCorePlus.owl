@@ -15,6 +15,7 @@
 @prefix ex_E: <http://example.com/x98/example_E#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix vfnc: <http://www.aes.org/ontologies/X098/vocabulary/functional#> .
 @prefix ecplus: <http://www.ebu.ch/metadata/ontologies/ebucoreplus#> .
@@ -78,16 +79,7 @@ ec:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#prefLabel
-skos:prefLabel rdf:type owl:AnnotationProperty ;
-               rdfs:subPropertyOf rdfs:label .
-
-
-###  http://www.w3.org/2006/time#hasTRS
-<http://www.w3.org/2006/time#hasTRS> rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDDateTimeStamp
-<http://www.w3.org/2006/time#inXSDDateTimeStamp> rdf:type owl:AnnotationProperty .
+skos:prefLabel rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -209,7 +201,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty ;
 
 ###  http://www.aes.org/ontologies/X098#transitionDuration
 :transitionDuration rdf:type owl:ObjectProperty ;
-                    rdfs:range ec:TimelinePoint ;
+                    rdfs:range ecplus:TimelinePoint ;
                     dcterms:description "The duration of the transition to the following setting"@en ;
                     rdfs:label "transition duration"@en .
 
@@ -244,69 +236,17 @@ ccdm:usesProductionDevice rdf:type owl:ObjectProperty .
 ec:dateCreated rdf:type owl:ObjectProperty .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#end
-ec:end rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endEditUnit
-ec:endEditUnit rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf ec:end .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endNormalPlayTime
-ec:endNormalPlayTime rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf ec:end .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecode
-ec:endTimecode rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf ec:end .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#endTimecodeDropFrame
-ec:endTimecodeDropFrame rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf ec:end .
-
-
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasIdentifier
 ec:hasIdentifier rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#instantiates
-ec:instantiates rdf:type owl:ObjectProperty ;
-                rdfs:label "instantiates"@en .
 
 
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#isInstantiatedBy
 ec:isInstantiatedBy rdf:type owl:ObjectProperty .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#objectType
-ec:objectType rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#start
-ec:start rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startEditUnit
-ec:startEditUnit rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf ec:start .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startNormalPlayTime
-ec:startNormalPlayTime rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf ec:start .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecode
-ec:startTimecode rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf ec:start .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#startTimecodeDropFrame
-ec:startTimecodeDropFrame rdf:type owl:ObjectProperty ;
-                          rdfs:subPropertyOf ec:start .
+###  http://www.ebu.ch/metadata/ontologies/ebucoreplus#instantiates
+ecplus:instantiates rdf:type owl:ObjectProperty ;
+                    rdfs:label "instantiates"@en .
 
 
 ###  http://www.w3.org/2004/02/skos/core#inScheme
@@ -582,7 +522,7 @@ skos:notation rdf:type owl:DatatypeProperty .
                         [ rdf:type owl:Restriction ;
                           owl:onProperty :settingsProfile ;
                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onClass ec:Resource
+                          owl:onClass ecplus:Resource
                         ] ;
         dcterms:description "The device element shall be used to describe the setup and characteristics of a single device in the signal graph."@en ;
         rdfs:label "Device"@en .
@@ -838,17 +778,17 @@ skos:notation rdf:type owl:DatatypeProperty .
                                 owl:onClass skos:Concept
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty ec:dateCreated ;
+                                owl:onProperty ecplus:dateCreated ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass <http://www.w3.org/2006/time#Instant>
+                                owl:onClass time:Instant
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty ec:end ;
+                                owl:onProperty ecplus:end ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass ec:TimelinePoint
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty ec:start ;
+                                owl:onProperty ecplus:start ;
                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                 owl:onClass ec:TimelinePoint
                               ] ,
@@ -918,10 +858,6 @@ NOTE Each processEvent is bounded by the constraint that it shall have one or mo
                  rdfs:label "Stereo to Mid Side transformer"@en .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Identifier
-ec:Identifier rdf:type owl:Class .
-
-
 ###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#Person
 ec:Person rdf:type owl:Class .
 
@@ -951,7 +887,7 @@ skos:Consept rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2006/time#Instant
-<http://www.w3.org/2006/time#Instant> rdf:type owl:Class .
+time:Instant rdf:type owl:Class .
 
 
 #################################################################
@@ -962,7 +898,7 @@ skos:Consept rdf:type owl:Class .
 ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
                            ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
-                           ec:dateCreated ex_A:time_oct16_2022 ;
+                           ecplus:dateCreated ex_A:time_oct16_2022 ;
                            ec:hasCreator ex_A:eng_se ;
                            ec:title "Restauration job example A"@en ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
@@ -971,7 +907,7 @@ This example will not cover this in details, the properties you need will be cov
 
 ###  http://example.com/x98/example_A#agentTormodV
 ex_A:agentTormodV rdf:type owl:NamedIndividual ,
-                           ec:Person ;
+                           ecplus:Person ;
                   ec:familyName "Værvågen"@en ;
                   ec:givenName "Tormod"@en .
 
@@ -986,7 +922,7 @@ See EBU Core+ for further attributes."""@en .
 ###  http://example.com/x98/example_A#eng_se
 ex_A:eng_se rdf:type owl:NamedIndividual ,
                      ec:Role ;
-            ec:objectType ex_A:soundEng ;
+            ecplus:objectType ex_A:soundEng ;
             ec:hasAgent ex_A:agentTormodV .
 
 
@@ -1019,16 +955,16 @@ ex_A:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_A#sourceFile
 ex_A:sourceFile rdf:type owl:NamedIndividual ,
                          ecplus:MediaResource ;
-                ec:instantiates ex_A:sourceDescription ;
+                ecplus:instantiates ex_A:sourceDescription ;
                 rdfs:comment """Some generic audio source file.
 See EBU Core+ for usage."""@en .
 
 
 ###  http://example.com/x98/example_A#time_oct16_2022
 ex_A:time_oct16_2022 rdf:type owl:NamedIndividual ,
-                              <http://www.w3.org/2006/time#Instant> ;
-                     <http://www.w3.org/2006/time#hasTRS> <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
-                     <http://www.w3.org/2006/time#inXSDDateTimeStamp> "2022-10-16T14:59:32Z"^^xsd:dateTimeStamp .
+                              time:Instant ;
+                     time:hasTRS <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
+                     time:inXSDDateTimeStamp "2022-10-16T14:59:32Z"^^xsd:dateTimeStamp .
 
 
 ###  http://example.com/x98/example_B#RestaurationProject_B
@@ -1081,7 +1017,7 @@ ex_B:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_B#sourceFile
 ex_B:sourceFile rdf:type owl:NamedIndividual ,
                          ecplus:MediaResource ;
-                ec:instantiates ex_B:sourceDescription ;
+                ecplus:instantiates ex_B:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
 
@@ -1137,7 +1073,7 @@ ex_C:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_C#sourceFile
 ex_C:sourceFile rdf:type owl:NamedIndividual ,
                          ecplus:MediaResource ;
-                ec:instantiates ex_C:sourceDescription ;
+                ecplus:instantiates ex_C:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
 
@@ -1193,7 +1129,7 @@ ex_D:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_D#sourceFile
 ex_D:sourceFile rdf:type owl:NamedIndividual ,
                          ecplus:MediaResource ;
-                ec:instantiates ex_D:sourceDescription ;
+                ecplus:instantiates ex_D:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 Se EBU Core+ for usage."""@en .
 
@@ -1249,7 +1185,7 @@ ex_E:sourceDescription rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_E#sourceFile
 ex_E:sourceFile rdf:type owl:NamedIndividual ,
                          ecplus:MediaResource ;
-                ec:instantiates ex_E:sourceDescription ;
+                ecplus:instantiates ex_E:sourceDescription ;
                 rdfs:comment """Some generic source file for the audio.
 See EBU Core+ for usage."""@en .
 
