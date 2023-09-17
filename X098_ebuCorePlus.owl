@@ -204,39 +204,6 @@ ec:hasCreator rdf:type owl:AnnotationProperty .
                 rdfs:label "transitionType"@en .
 
 
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasAssociatedProductionJob
-ccdm:hasAssociatedProductionJob rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasInputMediaResource
-ccdm:hasInputMediaResource rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasOutputMediaResource
-ccdm:hasOutputMediaResource rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#hasSubJob
-ccdm:hasSubJob rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebuccdm#usesProductionDevice
-ccdm:usesProductionDevice rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#dateCreated
-ec:dateCreated rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#hasIdentifier
-ec:hasIdentifier rdf:type owl:ObjectProperty .
-
-
-###  http://www.ebu.ch/metadata/ontologies/ebucoreplus#instantiates
-ecplus:instantiates rdf:type owl:ObjectProperty ;
-                    rdfs:label "instantiates"@en .
-
-
 ###  http://www.w3.org/2004/02/skos/core#inScheme
 skos:inScheme rdf:type owl:ObjectProperty ;
               rdfs:domain skos:Consept ;
@@ -869,8 +836,8 @@ skos:Consept rdf:type owl:Class .
 ###  http://example.com/x98/example_A#RestaurationProject_A
 ex_A:RestaurationProject_A rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
                            ecplus:dateCreated ex_A:time_oct16_2022 ;
+                           ecplus:hasAssociatedProductionJob ex_A:restauration_A_step_1 ;
                            ecplus:title "Restauration job example A"@en ;
                            ec:hasCreator ex_A:eng_se ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project. 
@@ -903,8 +870,8 @@ ex_A:restauration_A_step_1 rdf:type owl:NamedIndividual ,
                                     :Filter ,
                                     :ProcessEvent ,
                                     ecplus:ProductionJob ;
-                           ccdm:hasInputMediaResource ex_A:sourceFile ;
-                           ccdm:hasOutputMediaResource ex_A:destinationFile ;
+                           ecplus:hasInputMediaResource ex_A:sourceFile ;
+                           ecplus:hasOutputMediaResource ex_A:destinationFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
@@ -942,7 +909,7 @@ ex_A:time_oct16_2022 rdf:type owl:NamedIndividual ,
 ###  http://example.com/x98/example_B#RestaurationProject_B
 ex_B:RestaurationProject_B rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex_B:restauration_B_step_1 ;
+                           ecplus:hasAssociatedProductionJob ex_B:restauration_B_step_1 ;
                            rdfs:comment """This object will hold data, describing the editorial information about the audio restauration project.
 This example will not cover this in details, the properties you need will be covered by EBU Core+.
 The project referenses the first productionjob in the chain."""@en .
@@ -961,7 +928,7 @@ ex_B:restauration_B_step_1 rdf:type owl:NamedIndividual ,
                                     :ProcessEvent ,
                                     ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_B:restauration_B_step_2 ;
-                           ccdm:hasInputMediaResource ex_B:sourceFile ;
+                           ecplus:hasInputMediaResource ex_B:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
                            rdfs:comment "*** Add proper subjobs here ***"@en ,
@@ -973,7 +940,7 @@ This is a compact notation."""@en .
 ex_B:restauration_B_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
                                     ecplus:ProductionJob ;
-                           ccdm:hasOutputMediaResource ex_B:destinationFile ;
+                           ecplus:hasOutputMediaResource ex_B:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
@@ -997,7 +964,7 @@ See EBU Core+ for usage."""@en .
 ###  http://example.com/x98/example_C#RestaurationProject_C
 ex_C:RestaurationProject_C rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex_C:restauration_C_step_1 ;
+                           ecplus:hasAssociatedProductionJob ex_C:restauration_C_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
 This example will not cover this in details, the properties you need will be covered by EBU Core+.
@@ -1017,7 +984,7 @@ ex_C:restauration_C_step_1 rdf:type owl:NamedIndividual ,
                                     :ProcessEvent ,
                                     ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_C:restauration_C_step_2 ;
-                           ccdm:hasInputMediaResource ex_C:sourceFile ;
+                           ecplus:hasInputMediaResource ex_C:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
                            rdfs:comment "***  Add proper subjobs here  ***"@en ,
@@ -1029,7 +996,7 @@ This is a compact notation."""@en .
 ex_C:restauration_C_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
                                     ecplus:ProductionJob ;
-                           ccdm:hasOutputMediaResource ex_C:destinationFile ;
+                           ecplus:hasOutputMediaResource ex_C:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
@@ -1053,7 +1020,7 @@ See EBU Core+ for usage."""@en .
 ###  http://example.com/x98/example_D#RestaurationProject_D
 ex_D:RestaurationProject_D rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex_D:restauration_D_step_1 ;
+                           ecplus:hasAssociatedProductionJob ex_D:restauration_D_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
 This example will not cover this in details, the properties you need will be covered by EBU Core+.
@@ -1073,7 +1040,7 @@ ex_D:restauration_D_step_1 rdf:type owl:NamedIndividual ,
                                     :ProcessEvent ,
                                     ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_D:restauration_D_step_2 ;
-                           ccdm:hasInputMediaResource ex_D:sourceFile ;
+                           ecplus:hasInputMediaResource ex_D:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
                            rdfs:comment "*** Add proper subjobs here ***"@en ,
@@ -1085,7 +1052,7 @@ This is a compact notation."""@en .
 ex_D:restauration_D_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
                                     ecplus:ProductionJob ;
-                           ccdm:hasOutputMediaResource ex_D:destinationFile ;
+                           ecplus:hasOutputMediaResource ex_D:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
@@ -1109,7 +1076,7 @@ Se EBU Core+ for usage."""@en .
 ###  http://example.com/x98/example_E#RestaurationProject_E
 ex_E:RestaurationProject_E rdf:type owl:NamedIndividual ,
                                     ecplus:EditorialObject ;
-                           ccdm:hasAssociatedProductionJob ex_E:restauration_E_step_1 ;
+                           ecplus:hasAssociatedProductionJob ex_E:restauration_E_step_1 ;
                            rdfs:comment "*** TEMPLATE ***"@en ,
                                         """This object will hold data, describing the editorial information about the audio restauration project.
 This example will not cover this in details, the properties you need will be covered by EBU Core+.
@@ -1129,7 +1096,7 @@ ex_E:restauration_E_step_1 rdf:type owl:NamedIndividual ,
                                     :ProcessEvent ,
                                     ecplus:ProductionJob ;
                            :hasDownstreamOutput ex_E:restauration_E_step_2 ;
-                           ccdm:hasInputMediaResource ex_E:sourceFile ;
+                           ecplus:hasInputMediaResource ex_E:sourceFile ;
                            :filterHighPassFreq "80"^^xsd:int ;
                            :sequenceNum "1"^^xsd:int ;
                            rdfs:comment "*** Add proper subjobs here ***"@en ,
@@ -1141,7 +1108,7 @@ This is a compact notation."""@en .
 ex_E:restauration_E_step_2 rdf:type owl:NamedIndividual ,
                                     :Dynamic ,
                                     ecplus:ProductionJob ;
-                           ccdm:hasOutputMediaResource ex_E:destinationFile ;
+                           ecplus:hasOutputMediaResource ex_E:destinationFile ;
                            :sequenceNum "2"^^xsd:int ;
                            rdfs:comment """The production job consist of only the usage of a filter, and is a production job and a filter at the same time.
 This is a compact notation."""@en .
